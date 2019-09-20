@@ -4,13 +4,14 @@ body {
    background-size: 100vw;
 }
 
-form {
+#form {
     background-color: #c4c4c4;    
-    margin-top: 20px;
+    margin-top: 150px;
 }
 
+
 .header {
-    background-color: brown;
+    background-color: burlywood;
     color: #ffffff;
     width: 100vw;
     padding: 10px;
@@ -24,11 +25,12 @@ form {
 }
 
 .footer {
-    background-color: blue;
+    background-color: darkturquoise;
     position: absolute;
     width: 100vw;
     bottom: 0;
     left: 0;
     text-align: center;
     color: #ffffff;
+    height: 75px;
 }
