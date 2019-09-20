@@ -3,3 +3,8 @@ body {
    background-repeat: no-repeat;
    background-size: 100vw;
 }
+
+form {
+    background-color: #c4c4c4;
+    
+}
