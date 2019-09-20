@@ -5,6 +5,30 @@ body {
 }
 
 form {
-    background-color: #c4c4c4;
-    
+    background-color: #c4c4c4;    
+    margin-top: 20px;
+}
+
+.header {
+    background-color: brown;
+    color: #ffffff;
+    width: 100vw;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#logo {
+    height: 70px;
+}
+
+.footer {
+    background-color: blue;
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: #ffffff;
 }
