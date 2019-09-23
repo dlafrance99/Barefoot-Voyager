@@ -56,6 +56,8 @@ function youTubeAPICall () {
 
 // news api 
 $("#submit").on("click", function (event) {
+    validation();
+
     event.preventDefault();
 
 
@@ -101,5 +103,57 @@ $("#submit").on("click", function (event) {
 });
 
 
+//form validation check 
+
+function validation (){
+
+    $("#location-input").on("input", function() {
+        var input = $(this);
+        var isText = input.val();
+        input.addClass("invalid");
+
+        if (isText){
+            input.removeClass("invalid").addClass("valid");
+            $(".error-location").text("");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+            $(".error-location").text("Please input a valid location");
+        }
+
+    })
+    $("#date-input").on("input", function() {
+        var input = $(this);
+        var isDate = input.val();
+
+        if (isDate){
+            input.removeClass("invalid").addClass("valid");
+            $(".error-dates").text("");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+            $(".error-dates").text("Please input a valid date range");
+        }
+
+    })
+    $("#interest-input").on("input", function() {
+        var input = $(this);
+        var isText = input.val();
+
+        if (isText){
+            input.removeClass("invalid").addClass("valid");
+            $(".error-interests").text("");
+
+        } else {
+            input.removeClass("valid").addClass("invalid");
+            $(".error-interests").text("Please input a valid interest");
+        }
+
+    })
+   
+}
+
+validation();
+// if()
 
 
+
+// $('input[name="dates"]').daterangepicker();

@@ -47,3 +47,12 @@ body {
 .newsImg {
     width: 300px;
 }
+
+ input.invalid:focus, input.invalid {
+    border: none;
+	border: 1px solid red;
+}
+
+.error-location, .error-dates, .error-interests {
+    color: red;
+}
