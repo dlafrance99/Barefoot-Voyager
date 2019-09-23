@@ -1,11 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+.clearfix::after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+.wrapper {
+    height: 100vh;
+}
+
 body {
-   background: url(../images/Mount\ Hood_Trillium\ Lake_9.16.17-6.jpg); 
+   background-image: url(../images/Mount\ Hood_Trillium\ Lake_9.16.17-6.jpg); 
    background-repeat: no-repeat;
-   background-size: 100vw;
+   background-size: auto 100%;
+   background-attachment: fixed;
 }
 
 #form {
-    background-color: #c4c4c4;    
+    background-color: #c4c4c4b7;    
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+    margin: auto;
     margin-top: 150px;
 }
 
@@ -27,6 +46,7 @@ body {
 .footer {
     background-color: darkturquoise;
     width: 100vw;
+    position: absolute;
     bottom: 0;
     left: 0;
     text-align: center;
@@ -38,12 +58,43 @@ body {
     background-color: dimgray;
     padding: 10px;
     margin: auto;
-    margin-top: 200px;
+    margin-top: 150px;
     color: #ffffff;
     width: 60%;
-    border-radius: 4px;
+    border-radius: 10px;
 }
 
 .newsImg {
     width: 300px;
+    float: right;
+    margin: 10px;
 }
+
+.byline {
+    float: left;
+    margin: 10px;
+}
+
+.source {
+    float: left;
+    margin: 10px;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+hr {
+    width: 80%;
+}
+
+.content {
+    margin: 20px;
+}
+
+
+
+
+
+
