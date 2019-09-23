@@ -90,11 +90,19 @@ $("#submit").on("click", function (event) {
             articleImage.attr("src", articlepictureURL);
             articleImage.addClass("newsImg")
 
-            newsDiv.append("<h5 id='headline'>" + articleNumber + ") <a href='"+ articleUrl + "'>" + headline + "</a></h5>");
-            newsDiv.append("<h6 id='byline'>By: " + byline + "</h6>");
-            newsDiv.append("<h6 id='source'>Source: " + source + "</h6>");
+            var newsSection = $("<div>");
+            newsSection.addClass("newsSection clearfix");
 
-            newsDiv.append(articleImage);
+            newsSection.append("<h5 class='headline'>" + articleNumber + ") <a href='"+ articleUrl + "'>" + headline + "</a></h5>");
+            newsSection.append("<h6 class='byline'>By: " + byline + "</h6>");
+            newsSection.append("<h6 class='source'>Source: " + source + "</h6>");
+
+            newsSection.append(articleImage);
+            newsDiv.append(newsSection);
+           
+           if (i<(articles.length-1)){
+               newsDiv.append("<hr>");
+           }
 
         };
         $(".content").html(newsDiv);
