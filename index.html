@@ -11,9 +11,7 @@
 
     <!-- Linking Skeleton -->
     <link href="assets/styling/skeleton.css" rel="stylesheet" type="text/css">
-
-    <!-- Linking jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 </head>
 <header></header>
 
@@ -25,29 +23,30 @@
             </h1>
         </header>
     </div>
-
-
+    
+    
     <form>
         <div id="form">
                 <div class="row">
                     <div class="twelve columns">
-                        <label for="destination">Location</label>
+                        <label for="location">Location</label>
                         <input class="u-full-width" type="text" placeholder="Your Location" id="location-input">
                     </div>
-                    <div class="twelve columns">
-                        <label for="destination">Dates</label>
-                        <input class="u-full-width" type="date" placeholder="Requested Dates" id="date-input">
+                    <div class="twelve columns form-control">
+                        <label for="dates">Dates</label>
+                        <input class="u-full-width" type="text" name="dates" 
+                        placeholder="Requested Dates" id="date-input">
                     </div>
                     <div class="twelve columns">
-                        <label for="destination">Interests</label>
+                        <label for="interests">Interests</label>
                         <input class="u-full-width" type="text" placeholder="What Interests You?" id="interest-input">
                     </div>
-                    <input class="button-primary" type="submit" value="Submit">
+                    <input class="button-primary" id="submit" type="submit" value="Submit">
                 </div>
             </div>
         </form>
-
-
+        
+        
         <div class="row">
             <div class="eight columns">
                 <div class= "news-information"></div>
@@ -55,23 +54,32 @@
             <div class="four columns">
                 <div class= "weather-information"></div>
             </div>
-        <div class="row">
-            <div class="eight columns">
-                <div class= "youtube-information"></div>
+            <div class="row">
+                <div class="eight columns">
+                    <div class= "youtube-information"></div>
+                </div>
             </div>
-        </div>
+            
+            
+            
+            
+            <footer>
+                <div class="footer">
+                    <h5>footer</h5>
+                </div>
+            </footer>
+            
+            <!-- Linking jQuery -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            
+            <!-- Linking momentjs -->
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
+            <!-- Linking Date Range Library -->
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-  
-
-    <footer>
-        <div class="footer">
-            <h5>footer</h5>
-        </div>
-    </footer>
-
-    <!-- Linking javascript -->
-    <script src="assets/javascript/app.js"></script>
-</body>
-
-</html>
+            <!-- Linking javascript -->
+            <script src="assets/javascript/app.js"></script>
+        </body>
+        
+        </html>
