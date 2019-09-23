@@ -18,6 +18,7 @@ $(".button-primary").on("click", function(event) {
 
     $(".youtube-insert").empty();
     youTubeAPICall();
+    openWeatherAPICall();
 });
 
 // Tie into YouTube API and display videos based on userLocation and userInterests
@@ -33,8 +34,6 @@ function youTubeAPICall () {
         url: queryURLYouTube,
         method: "GET"
       }).then(function (response) {
-          console.log(response.items[0])
-          console.log(response.items[0].id.videoId)
           
           for (var i = 0; i < 5; i++){
             var youTubeVideoId = response.items[i].id.videoId
@@ -53,6 +52,37 @@ function youTubeAPICall () {
             
         };
 })};
+
+// Tie into OpenWeather API and display current weather based on userLocation
+function openWeatherAPICall () {
+    var locationWeather = userLocation;
+    var apiKeyWeather = "cbe15fe8bd11f0165e29631925aca3d4";
+
+    var queryURLOpenWeather = "https://api.openweathermap.org/data/2.5/weather?q=" + locationWeather + "&appid=" + apiKeyWeather + "&units=imperial";
+
+    $.ajax({
+        url: queryURLOpenWeather,
+        method: "GET"
+    }).then(function (response){
+        // console.log(response)
+        // console.log(response.name)
+        // console.log(response.main.temp)
+        // console.log(response.main.temp_max)
+        // console.log(response.main.temp_min)
+        // console.log(response.weather[0].description)
+        var weatherOverlay = $("<div>")
+
+        var infoWeatherOverlay = $("<p>")
+        infoWeatherOverlay.html("<p>", response.name);
+        infoWeatherOverlay.append(response.main.temp);
+        infoWeatherOverlay.append(response.main.temp_max);
+        infoWeatherOverlay.append(response.main.temp_min);
+        infoWeatherOverlay.append(response.weather[0].description);
+
+        weatherOverlay.append(infoWeatherOverlay);
+        $(".weather-information").append(weatherOverlay);
+    })
+};
 
 // news api 
 $("#submit").on("click", function (event) {
