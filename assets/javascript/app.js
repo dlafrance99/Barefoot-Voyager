@@ -59,20 +59,37 @@ function openWeatherAPICall () {
     var apiKeyWeather = "cbe15fe8bd11f0165e29631925aca3d4";
 
     var queryURLOpenWeather = "https://api.openweathermap.org/data/2.5/weather?q=" + locationWeather + "&appid=" + apiKeyWeather + "&units=imperial";
+    var queryURLForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationWeather + "&appid=" + apiKeyWeather + "&units=imperial";
 
+    // This AJAX calls the current weather for the destination city based on userLocation
     $.ajax({
         url: queryURLOpenWeather,
         method: "GET"
     }).then(function (response){
-        console.log(response)
+        // console.log(response)
 
         var weatherOverlay = $("<div>")
 
-        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Current Conditions: ${response.weather[0].description}`;
+        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}`;
 
         weatherOverlay.append(infoWeatherOverlay);
         $(".weather-information").append(weatherOverlay);
-    })
+    });
+
+    // This AJAX calls the forecasted weather for the destination city based on userLocation
+    $.ajax({
+        url: queryURLForecast,
+        method: "GET"
+    }).then(function (response){
+        console.log(response)
+
+        for (var i = 7; i < 40; i+=8) {
+            var date = response.list[i].dt_txt;
+            var stringToDate = new Date(date);
+            console.log(stringToDate)
+        }
+
+    });
 };
 
 // news api 
