@@ -26,7 +26,6 @@ body {
 
 .footer {
     background-color: darkturquoise;
-    position: relative;
     width: 100vw;
     bottom: 0;
     left: 0;
@@ -35,16 +34,16 @@ body {
     height: 75px;
 }
 
-
 .newsDiv {
     background-color: dimgray;
-    width: 500px;
+    padding: 10px;
     margin: auto;
     margin-top: 200px;
-    padding: 10px;
+    color: #ffffff;
+    width: 60%;
     border-radius: 4px;
 }
 
 .newsImg {
-    width: 400px;
+    width: 300px;
 }
