@@ -1,5 +1,7 @@
 // news api 
 $("#submit").on("click", function (event) {
+    validation();
+
     event.preventDefault();
 
 
@@ -47,7 +49,8 @@ $("#submit").on("click", function (event) {
 
 //form validation check 
 
-$(document).ready(function(){
+function validation (){
+
     $("#location-input").on("input", function() {
         var input = $(this);
         var isText = input.val();
@@ -66,8 +69,10 @@ $(document).ready(function(){
 
         if (isDate){
             input.removeClass("invalid").addClass("valid");
+            $(".error-dates").text("");
         } else {
             input.removeClass("valid").addClass("invalid");
+            $(".error-dates").text("Please input a valid date range");
         }
 
     })
@@ -77,17 +82,17 @@ $(document).ready(function(){
 
         if (isText){
             input.removeClass("invalid").addClass("valid");
+
         } else {
             input.removeClass("valid").addClass("invalid");
         }
 
     })
+   
+}
 
-})
- 
-// remove invalid class add valid class
-
-
+validation();
+// if()
 
 
 

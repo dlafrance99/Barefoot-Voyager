@@ -48,12 +48,11 @@ body {
     width: 300px;
 }
 
-.error{
-	display: none;
-	margin-left: 10px;
-}		
+ input.invalid  {
+    border: none;
+	border: 1px solid red;
+}
 
-.error_show{
-	color: red;
-	margin-left: 10px;
+.error-dates {
+    color: red;
 }
