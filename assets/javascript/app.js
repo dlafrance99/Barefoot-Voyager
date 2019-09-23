@@ -4,7 +4,6 @@ var userLocation;
 var userDates;
 var userInterests;
 
-
 // Grabs information from user input on forms after submit button is clicked 
 
 $(".button-primary").on("click", function(event) {
@@ -43,8 +42,8 @@ function youTubeAPICall () {
             var newDivideYouTube = $("<p>");
 
             var youTubePlace = $("<iframe>")
-            youTubePlace.attr("width", "360");
-            youTubePlace.attr("height", "215");
+            youTubePlace.attr("width", "460");
+            youTubePlace.attr("height", "315");
             youTubePlace.attr("src", youTubePageAdd);
             youTubePlace.attr("frameborder", "0");
             youTubePlace.attr("allow", "accelerometer; encrypted-media; gyroscope; picture-in-picture");
@@ -53,6 +52,5 @@ function youTubeAPICall () {
             $(".youtube-insert").append(newDivideYouTube);
             
         };
-
 })};
 
