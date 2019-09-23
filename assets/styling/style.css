@@ -1,0 +1,36 @@
+body {
+   background: url(../images/Mount\ Hood_Trillium\ Lake_9.16.17-6.jpg); 
+   background-repeat: no-repeat;
+   background-size: 100vw;
+}
+
+#form {
+    background-color: #c4c4c4;    
+    margin-top: 150px;
+}
+
+
+.header {
+    background-color: burlywood;
+    color: #ffffff;
+    width: 100vw;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#logo {
+    height: 70px;
+}
+
+.footer {
+    background-color: darkturquoise;
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: #ffffff;
+    height: 75px;
+}
