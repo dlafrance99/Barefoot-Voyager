@@ -64,20 +64,11 @@ function openWeatherAPICall () {
         url: queryURLOpenWeather,
         method: "GET"
     }).then(function (response){
-        // console.log(response)
-        // console.log(response.name)
-        // console.log(response.main.temp)
-        // console.log(response.main.temp_max)
-        // console.log(response.main.temp_min)
-        // console.log(response.weather[0].description)
+        console.log(response)
+
         var weatherOverlay = $("<div>")
 
-        var infoWeatherOverlay = $("<p>")
-        infoWeatherOverlay.html("<p>", response.name);
-        infoWeatherOverlay.append(response.main.temp);
-        infoWeatherOverlay.append(response.main.temp_max);
-        infoWeatherOverlay.append(response.main.temp_min);
-        infoWeatherOverlay.append(response.weather[0].description);
+        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Current Conditions: ${response.weather[0].description}`;
 
         weatherOverlay.append(infoWeatherOverlay);
         $(".weather-information").append(weatherOverlay);
