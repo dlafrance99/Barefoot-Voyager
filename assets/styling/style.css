@@ -33,3 +33,17 @@ body {
     color: #ffffff;
     height: 75px;
 }
+
+.newsDiv {
+    background-color: dimgray;
+    padding: 10px;
+    margin: auto;
+    margin-top: 200px;
+    color: #ffffff;
+    width: 60%;
+    border-radius: 4px;
+}
+
+.newsImg {
+    width: 300px;
+}
