@@ -26,11 +26,25 @@ body {
 
 .footer {
     background-color: darkturquoise;
-    position: absolute;
+    position: relative;
     width: 100vw;
     bottom: 0;
     left: 0;
     text-align: center;
     color: #ffffff;
     height: 75px;
+}
+
+
+.newsDiv {
+    background-color: dimgray;
+    width: 500px;
+    margin: auto;
+    margin-top: 200px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.newsImg {
+    width: 400px;
 }
