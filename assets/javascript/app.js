@@ -1,14 +1,3 @@
-//   $('input[name="dates"]').daterangepicker({
-//     "showDropdowns": true,
-//     "minYear": 1900,
-//     "linkedCalendars": false,
-//     "parentEl": "#date-input",
-//     "startDate": "09/17/2019",
-//     "endDate": "09/23/2019"
-// }, function(start, end, label) {
-//   console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-// });
-
 // news api 
 $("#submit").on("click", function (event) {
     event.preventDefault();
@@ -50,12 +39,46 @@ $("#submit").on("click", function (event) {
             newsDiv.append(articleImage);
 
         };
-        $(".news-information").html(newsDiv);
+        $(".content").html(newsDiv);
     });
 
 });
 
 
+//form validation check 
+
+$(document).ready(function(){
+    $("#location-input").on("input", function() {
+        var input = $(this);
+        var isText = input.val();
+        input.addClass("invalid");
+
+        if (isText){
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+
+    })
+    $("#date-input").on("input", function() {
+        var input = $(this);
+        var isDate = input.val();
+        input.addClass("invalid");
+
+        if (isDate){
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+
+    })
+
+})
+ 
+// remove invalid class add valid class
 
 
-$('input[name="dates"]').daterangepicker();
+
+
+
+// $('input[name="dates"]').daterangepicker();
