@@ -63,9 +63,19 @@ $(document).ready(function(){
     $("#date-input").on("input", function() {
         var input = $(this);
         var isDate = input.val();
-        input.addClass("invalid");
 
         if (isDate){
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+
+    })
+    $("#interest-input").on("input", function() {
+        var input = $(this);
+        var isText = input.val();
+
+        if (isText){
             input.removeClass("invalid").addClass("valid");
         } else {
             input.removeClass("valid").addClass("invalid");
