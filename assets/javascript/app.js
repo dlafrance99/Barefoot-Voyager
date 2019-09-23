@@ -114,8 +114,10 @@ function validation (){
 
         if (isText){
             input.removeClass("invalid").addClass("valid");
+            $(".error-location").text("");
         } else {
             input.removeClass("valid").addClass("invalid");
+            $(".error-location").text("Please input a valid location");
         }
 
     })
@@ -138,9 +140,11 @@ function validation (){
 
         if (isText){
             input.removeClass("invalid").addClass("valid");
+            $(".error-interests").text("");
 
         } else {
             input.removeClass("valid").addClass("invalid");
+            $(".error-interests").text("Please input a valid interest");
         }
 
     })

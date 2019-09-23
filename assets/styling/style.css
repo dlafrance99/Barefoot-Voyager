@@ -48,11 +48,11 @@ body {
     width: 300px;
 }
 
- input.invalid  {
+ input.invalid:focus, input.invalid {
     border: none;
 	border: 1px solid red;
 }
 
-.error-dates {
+.error-location, .error-dates, .error-interests {
     color: red;
 }
