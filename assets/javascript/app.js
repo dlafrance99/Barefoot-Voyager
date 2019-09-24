@@ -172,23 +172,7 @@ function validation (){
         }
 
     })
-    $("#date-input").on("click", ".applyBtn", function() {
-        // var input = $("#date-input");
-        // var date = input.val();
-        
-        // input.removeClass("invalid").addClass("valid");
-        // $(".error-dates").remove();
 
-        // console.log(date);
-        // if (date){
-        //     input.removeClass("invalid").addClass("valid");
-        //     $(".error-dates").remove();
-        // } else {
-        //     input.removeClass("valid").addClass("invalid");
-        //     $(".error-dates").text("Please input a valid date range");
-        // }
-
-    })
     $("#interest-input").on("input", function() {
         var input = $(this);
         var interest = input.val();
@@ -220,5 +204,15 @@ console.log($("#location-input").hasClass("valid"));
 console.log($("#date-input").hasClass("valid"));
 console.log($("#interest-input").hasClass("valid"));
 
-// $("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")
-// $('input[name="dates"]').daterangepicker();
+
+
+// Client ID
+// WBeh3RfYOcPeVKQPVEyYCA
+function yelpAPI (){
+    userLocation = $("#location-input").val();
+    userInterests = $("#interest-input").val();
+
+    var apiKey =  "gCA_PN9B-qQALxGarBsvH7HpL2ap2uFPlIA-N5Z733yMjrK8euw0fzbu3uL42xobygQwpAJKVlja9H1rrNhVOHt9ADY_Qb4NnifF-3XcPvmxIJPhg38ese_pckGKXXYx"
+    var apiAddress = "https://api.yelp.com/v3/businesses/search?term=" + userInterests + "&" + userLocation + 
+
+}
