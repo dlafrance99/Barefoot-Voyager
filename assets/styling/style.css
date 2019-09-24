@@ -8,8 +8,16 @@
     display: block;
 }
 
+p {
+    background-color: #ffffff;
+}
+
+.forecast {
+    background-color: blue;
+}
+
 .wrapper {
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
 }
 
@@ -56,6 +64,7 @@ body {
     text-align: center;
     color: #ffffff;
     height: 75px;
+    position: absolute;
 }
 
 .newsDiv {
