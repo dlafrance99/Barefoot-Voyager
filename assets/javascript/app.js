@@ -17,11 +17,11 @@ $(".button-primary").on("click", function(event) {
     console.log(userInterests);
 
     $(".youtube-insert").empty();
-    youTubeAPICall();
-    openWeatherAPICall();
+    // youTubeAPICall();
 });
 
 // Tie into YouTube API and display videos based on userLocation and userInterests
+
 function youTubeAPICall () {
     var locationYouTube = userLocation;
     var userInterestYouTube = userInterests;
@@ -33,8 +33,10 @@ function youTubeAPICall () {
         url: queryURLYouTube,
         method: "GET"
       }).then(function (response) {
+          console.log(response.items[0])
+          console.log(response.items[0].id.videoId)
           
-          for (var i = 0; i < 3; i++){
+          for (var i = 0; i < 5; i++){
             var youTubeVideoId = response.items[i].id.videoId
             var youTubePageAdd = "https://www.youtube.com/embed/" + youTubeVideoId;
             var newDivideYouTube = $("<p>");
@@ -51,45 +53,6 @@ function youTubeAPICall () {
             
         };
 })};
-
-// Tie into OpenWeather API and display current weather based on userLocation
-function openWeatherAPICall () {
-    var locationWeather = userLocation;
-    var apiKeyWeather = "cbe15fe8bd11f0165e29631925aca3d4";
-
-    var queryURLOpenWeather = "https://api.openweathermap.org/data/2.5/weather?q=" + locationWeather + "&appid=" + apiKeyWeather + "&units=imperial";
-    var queryURLForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationWeather + "&appid=" + apiKeyWeather + "&units=imperial";
-
-    // This AJAX calls the current weather for the destination city based on userLocation
-    $.ajax({
-        url: queryURLOpenWeather,
-        method: "GET"
-    }).then(function (response){
-        // console.log(response)
-
-        var weatherOverlay = $("<div>")
-
-        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}`;
-
-        weatherOverlay.append(infoWeatherOverlay);
-        $(".weather-information").append(weatherOverlay);
-    });
-
-    // This AJAX calls the forecasted weather for the destination city based on userLocation
-    $.ajax({
-        url: queryURLForecast,
-        method: "GET"
-    }).then(function (response){
-        console.log(response)
-
-        for (var i = 7; i < 40; i+=8) {
-            var date = response.list[i].dt_txt;
-            var stringToDate = new Date(date);
-            console.log(stringToDate)
-        }
-
-    });
-};
 
 // news api 
 $("#submit").on("click", function (event) {
@@ -127,23 +90,17 @@ $("#submit").on("click", function (event) {
             articleImage.attr("src", articlepictureURL);
             articleImage.addClass("newsImg")
 
-            var newsSection = $("<div>");
-            newsSection.addClass("newsSection clearfix");
+            newsDiv.append("<h5 id='headline'>" + articleNumber + ") <a href='"+ articleUrl + "'>" + headline + "</a></h5>");
+            newsDiv.append("<h6 id='byline'>By: " + byline + "</h6>");
+            newsDiv.append("<h6 id='source'>Source: " + source + "</h6>");
 
-            newsSection.append("<h5 class='headline'>" + articleNumber + ") <a href='"+ articleUrl + "'>" + headline + "</a></h5>");
-            newsSection.append("<h6 class='byline'>By: " + byline + "</h6>");
-            newsSection.append("<h6 class='source'>Source: " + source + "</h6>");
-
-            newsSection.append(articleImage);
-            newsDiv.append(newsSection);
-           
-           if (i<(articles.length-1)){
-               newsDiv.append("<hr>");
-           }
+            newsDiv.append(articleImage);
 
         };
         $(".content").html(newsDiv);
         });
+
+        breweryApi();
 
     } else {
 
@@ -172,7 +129,19 @@ function validation (){
         }
 
     })
+    $("#date-input").on("input", function() {
+        var input = $(this);
+        var date = input.val();
 
+        if (date){
+            input.removeClass("invalid").addClass("valid");
+            $(".error-dates").remove();
+        } else {
+            input.removeClass("valid").addClass("invalid");
+            $(".error-dates").text("Please input a valid date range");
+        }
+
+    })
     $("#interest-input").on("input", function() {
         var input = $(this);
         var interest = input.val();
@@ -192,27 +161,34 @@ function validation (){
 validation();
 
 
-//calendar 
+
 $('input[name="dates"]').daterangepicker({
+	singleMonth: true,
 	showShortcuts: false,
 	showTopbar: false
 }, function(start, end, label) {
   console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
 });
 
-console.log($("#location-input").hasClass("valid"));
-console.log($("#date-input").hasClass("valid"));
-console.log($("#interest-input").hasClass("valid"));
+function breweryApi (){
+    
+    var url = "https://api.openbrewerydb.org/breweries?by_city=" + userLocation;
+    var breweryDiv = $("<div>");
+    breweryDiv.addClass("breweryDiv")
+    
+    $.ajax ({
+        url,
+        method: "Get"
+    }).then (function (response){
+        for (i = 0; i < 5; i++){
+            var name = response[i].name;
+            var street = response[i].street;
 
-
-
-// Client ID
-// WBeh3RfYOcPeVKQPVEyYCA
-function yelpAPI (){
-    userLocation = $("#location-input").val();
-    userInterests = $("#interest-input").val();
-
-    var apiKey =  "gCA_PN9B-qQALxGarBsvH7HpL2ap2uFPlIA-N5Z733yMjrK8euw0fzbu3uL42xobygQwpAJKVlja9H1rrNhVOHt9ADY_Qb4NnifF-3XcPvmxIJPhg38ese_pckGKXXYx"
-    var apiAddress = "https://api.yelp.com/v3/businesses/search?term=" + userInterests + "&" + userLocation + 
-
+        breweryDiv.append("<h4>" + name + "</h4>");
+        breweryDiv.append("<p>" + street + "</p>");
+        console.log(name);
+        console.log(street);
+    }
+    $(".content").append(breweryDiv);
+    })
 }
