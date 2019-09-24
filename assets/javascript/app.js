@@ -4,6 +4,9 @@ var userLocation;
 var userDates;
 var userInterests;
 
+
+$(".modal").addClass("logoModal")
+
 // Grabs information from user input on forms after submit button is clicked 
 
 $("#submit").on("click", function(event) {

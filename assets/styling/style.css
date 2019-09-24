@@ -152,6 +152,7 @@ hr {
     padding: 40px;
     font-size: 20px;
     text-align: center;
+    background-color: #ffffff;
 }
 
 /* overrides skeleton styling on calendar */
@@ -167,4 +168,10 @@ th,
   td:last-child {
     padding-right: 0; }
 
-    
+.modal a.close-modal {
+    background-image: none;
+    background-color: black;
+    border-radius: 15px;
+    background-size: 25px;
+    background-image: url("../images/logo_modal.png");
+}
