@@ -9,36 +9,50 @@ $(".modal").addClass("logoModal")
 
 // Grabs information from user input on forms after submit button is clicked 
 
-$("#submit").on("click", function(event) {
+$("#submit").on("click", function (event) {
     event.preventDefault();
 
-    $(".content").empty();
-
-    
-    
     userLocation = $("#location-input").val().trim();
     console.log(userLocation);
     userDates = $("#date-input").val().trim();
     console.log(userDates);
     userInterests = $("#interest-input").val().trim();
     console.log(userInterests);
-    
-    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")){
 
-    $(".youtube-insert").empty();
-    youTubeAPICall();
-    openWeatherAPICall();
+    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
+
+        youTubeAPICall();
+        openWeatherAPICall();
+        ticketMasterAPICall();
+        newsAPICall();
+        breweryAPICall();
+
     } else {
 
         $("<p> Invalid selection, Please try again!</p>").modal();
-       
-       }
+
+    }
+});
+
+$("#search-again").on("click", function (event) {
+    event.preventDefault();
+
+    $("#location-input").val("");
+    $("#date-input").val("");
+    $("#interest-input").val("");
+
+    $("#weather-div").empty();
+    $(".forecast").empty();
+    $(".newsDiv").empty();
+    $(".ticket-information").empty();
+    $(".youtube-insert").empty();
+    $(".breweryDiv").empty();
+    $(".content").empty();
 });
 
 // Tie into YouTube API and display videos based on userLocation and userInterests
 
-function youTubeAPICall () {
-    validation();
+function youTubeAPICall() {
     var locationYouTube = userLocation;
     var userInterestYouTube = userInterests;
     var searchYouTube = locationYouTube + " " + userInterestYouTube;
@@ -48,11 +62,11 @@ function youTubeAPICall () {
     $.ajax({
         url: queryURLYouTube,
         method: "GET"
-      }).then(function (response) {
-          
-          var newDivideYouTube = $("<div id='youtube-div'>");
-          var videoDiv = $("<div class='video'>");
-          for (var i = 0; i < 3; i++){
+    }).then(function (response) {
+
+        var newDivideYouTube = $("<div id='youtube-div'>");
+        var videoDiv = $("<div class='video'>");
+        for (var i = 0; i < 3; i++) {
             var youTubeVideoId = response.items[i].id.videoId
             var youTubePageAdd = "https://www.youtube.com/embed/" + youTubeVideoId;
 
@@ -64,18 +78,18 @@ function youTubeAPICall () {
             youTubePlace.attr("allow", "accelerometer; encrypted-media; gyroscope; picture-in-picture");
 
             videoDiv.append(youTubePlace);
-            };
+        };
         newDivideYouTube.append(videoDiv);
         newDivideYouTube.addClass("youtube-div");
         $(".content").append(newDivideYouTube);
         $(".youtube-div").prepend("<h4 id='youtube-header'>YouTube Videos</h4>")
 
-})};
+    })
+};
 
 // Tie into OpenWeather API and display current weather based on userLocation
 
-function openWeatherAPICall () {
-    validation();
+function openWeatherAPICall() {
     var locationWeather = userLocation;
     var apiKeyWeather = "cbe15fe8bd11f0165e29631925aca3d4";
 
@@ -87,7 +101,7 @@ function openWeatherAPICall () {
     $.ajax({
         url: queryURLOpenWeather,
         method: "GET"
-    }).then(function (response){
+    }).then(function (response) {
 
         var weatherOverlay = $("<div id='weather-div'>")
 
@@ -102,11 +116,11 @@ function openWeatherAPICall () {
     $.ajax({
         url: queryURLForecast,
         method: "GET"
-    }).then(function (response){
+    }).then(function (response) {
         console.log(response)
 
-        for (var i = 7; i < 40; i+=8) {
-            
+        for (var i = 7; i < 40; i += 8) {
+
             var weatherForecast = (moment(response.list[i].dt_txt, "YYYY-MM-DD h:mm:ss").format("dddd, MMMM Do, h:mma"));
             console.log(weatherForecast)
 
@@ -123,143 +137,110 @@ function openWeatherAPICall () {
 };
 
 // news api 
+function newsAPICall() {
 
-$("#submit").on("click", function (event) {
-    event.preventDefault();
-
-    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")){
+    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
 
 
-    var location = $("#location-input").val().trim();
-    var articleLimit = 5;
-    var newsAPIkey = "3fe53b99010243faa5ad7667a9f9d73f";
-    var newsURL = "https://newsapi.org/v2/everything?q=" + location + "&apiKey=3fe53b99010243faa5ad7667a9f9d73f&pageSize=" + articleLimit;
+        var location = $("#location-input").val().trim();
+        var articleLimit = 5;
+        var newsAPIkey = "3fe53b99010243faa5ad7667a9f9d73f";
+        var newsURL = "https://newsapi.org/v2/everything?q=" + location + "&apiKey=3fe53b99010243faa5ad7667a9f9d73f&pageSize=" + articleLimit;
 
 
-    $.ajax({
-        url: newsURL,
-        method: "GET",
-    }).then(function (response) {
-        var articles = response.articles;
-        console.log(articles);
-        var newsDiv = $("<div>");
-        newsDiv.addClass("newsDiv")
-        for (var i = 0; i < articles.length; i++) {
-            var headline = articles[i].title;
-            var byline = articles[i].author;
-            var source = articles[i].source.name;
-            var articlepictureURL = articles[i].urlToImage;
-            var articleNumber = i+1;
-            var articleUrl = articles[i].url;
-            
+        $.ajax({
+            url: newsURL,
+            method: "GET",
+        }).then(function (response) {
+            var articles = response.articles;
+            console.log(articles);
+            var newsDiv = $("<div>");
+            newsDiv.addClass("newsDiv")
+            for (var i = 0; i < articles.length; i++) {
+                var headline = articles[i].title;
+                var byline = articles[i].author;
+                var source = articles[i].source.name;
+                var articlepictureURL = articles[i].urlToImage;
+                var articleNumber = i + 1;
+                var articleUrl = articles[i].url;
 
 
 
-            var articleImage = $("<img>");
-            articleImage.attr("src", articlepictureURL);
-            articleImage.addClass("newsImg")
 
-            var newsSection = $("<div>");
-            newsSection.addClass("newsSection clearfix");
+                var articleImage = $("<img>");
+                articleImage.attr("src", articlepictureURL);
+                articleImage.addClass("newsImg")
 
-            newsSection.append("<h5 class='headline'>" + articleNumber + ") <a href='"+ articleUrl + "'>" + headline + "</a></h5>");
-            newsSection.append("<h6 class='byline'>By: " + byline + "</h6>");
-            newsSection.append("<h6 class='source'>Source: " + source + "</h6>");
+                var newsSection = $("<div>");
+                newsSection.addClass("newsSection clearfix");
 
-            newsSection.append(articleImage);
-            newsDiv.append(newsSection);
-            
-            if (i<(articles.length-1)){
-                newsDiv.append("<hr>");
-            }
-            
-        };
-        newsDiv.prepend("<h4 id='news-header'>Top News</h4>")
-        $(".content").append(newsDiv);
+                newsSection.append("<h5 class='headline'>" + articleNumber + ") <a href='" + articleUrl + "'>" + headline + "</a></h5>");
+                newsSection.append("<h6 class='byline'>By: " + byline + "</h6>");
+                newsSection.append("<h6 class='source'>Source: " + source + "</h6>");
+
+                newsSection.append(articleImage);
+                newsDiv.append(newsSection);
+
+                if (i < (articles.length - 1)) {
+                    newsDiv.append("<hr>");
+                }
+
+            };
+            newsDiv.prepend("<h4 id='news-header'>Top News</h4>")
+            $(".content").append(newsDiv);
         });
-
 
     } else {
 
         $("<p> Invalid selection, Please try again!</p>").modal();
-       
-       }
-});
 
+    }
+};
 
-// added the TM
-$("#submit").on("click", function (event) {
-    event.preventDefault();
+// Brewery API Call
+function breweryAPICall() {
+    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
 
+        function breweryApi() {
 
-    var location = $("#location-input").val().trim();
-    var ticketMasterAPIkey = "TFjXDEI1LogVpEJmc428NgcftKE2zdS6f";
-    var ticketURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=TFjXDEI1LogVpEJmc428NgcftKE2zdS6";
-
-    $.ajax({
-        url: ticketURL,
-        method: "GET"
-    })
-        .then(function (response) {
-            var results = response._embedded.events;
-            console.log(results);
-            var ticketsDiv = $("<div>");
-            
-            for (var i = 0; i < results.length; i++) {
-                var pname= $("<p>").text(results[i].name);
-                $(ticketsDiv).append(pname)
-                var pdate= $("<p>").text(results[i].dates.start.localDate);
-                $(ticketsDiv).append(pdate);
-            }
-            $(".ticket-information").append(ticketsDiv)
-        })
-});
-
-$("#submit").on("click", function (event){
-    event.preventDefault();
-    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")){
-
-        function breweryApi (){
-            
             var url = "https://api.openbrewerydb.org/breweries?by_city=" + userLocation;
             var breweryDiv = $("<div>");
             breweryDiv.addClass("breweryDiv")
-            
-            $.ajax ({
+
+            $.ajax({
                 url,
                 method: "Get"
-            }).then (function (response){
-                for (i = 0; i < 3; i++){
+            }).then(function (response) {
+                for (i = 0; i < 3; i++) {
                     var name = response[i].name;
                     var street = response[i].street;
-        
-                breweryDiv.append("<h4>" + name + "</h4>");
-                breweryDiv.append("<p>" + street + "</p>");
 
-            }
-            $(".content").after(breweryDiv);
+                    breweryDiv.append("<h4>" + name + "</h4>");
+                    breweryDiv.append("<p>" + street + "</p>");
+
+                }
+                $(".content").after(breweryDiv);
             })
         }
         breweryApi();
     } else {
 
-    $("<p> Invalid selection, Please try again!</p>").modal();
-   
-   }
+        $("<p> Invalid selection, Please try again!</p>").modal();
 
-})
+    }
 
+};
 
 //form validation check 
 
-function validation (){
+function validation() {
 
-    $("#location-input").on("input", function() {
+    $("#location-input").on("input", function () {
         var input = $(this);
         var location = input.val();
         input.addClass("invalid");
 
-        if (location){
+        if (location) {
             input.removeClass("invalid").addClass("valid");
             $(".error-location").remove();
 
@@ -269,12 +250,12 @@ function validation (){
         }
 
     })
-  
-    $("#interest-input").on("input", function() {
+
+    $("#interest-input").on("input", function () {
         var input = $(this);
         var interest = input.val();
 
-        if (interest){
+        if (interest) {
             input.removeClass("invalid").addClass("valid");
             $(".error-interests").remove();
 
@@ -284,10 +265,9 @@ function validation (){
         };
 
     })
+
+    $("#date-input").val("");
 }
-
-validation();
-
 
 //calendar 
 
@@ -307,10 +287,7 @@ console.log($("#interest-input").hasClass("valid"));
 
 // added the TM
 
-
-$("#submit").on("click", function (event) {
-    event.preventDefault();
-
+function ticketMasterAPICall() {
 
     var location = $("#location-input").val().trim();
     var Limit= 5;
@@ -334,4 +311,39 @@ $("#submit").on("click", function (event) {
             }
             $(".ticket-information").append(ticketsDiv)
         })
-});
+};
+
+console.log($("#location-input").hasClass("valid"));
+console.log($("#date-input").hasClass("valid"));
+console.log($("#interest-input").hasClass("valid"));
+
+// $("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")
+// $('input[name="dates"]').daterangepicker();
+
+// Ticket Master API Call
+// function ticketMasterAPICall() {
+
+//     var location = $("#location-input").val().trim();
+//     var ticketMasterAPIkey = "TFjXDEI1LogVpEJmc428NgcftKE2zdS6f";
+//     var ticketURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=TFjXDEI1LogVpEJmc428NgcftKE2zdS6";
+
+//     $.ajax({
+//         url: ticketURL,
+//         method: "GET"
+//     })
+//         .then(function (response) {
+//             var results = response._embedded.events;
+//             console.log(results);
+//             var ticketsDiv = $("<div>");
+
+//             for (var i = 0; i < results.length; i++) {
+//                 var pname = $("<p>").text(results[i].name);
+//                 $(ticketsDiv).append(pname)
+//                 var pdate = $("<p>").text(results[i].dates.start.localDate);
+//                 $(ticketsDiv).append(pdate);
+//             }
+//             $(".ticket-information").html(ticketsDiv)
+//         })
+// };
+
+validation();
