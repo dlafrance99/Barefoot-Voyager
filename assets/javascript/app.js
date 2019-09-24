@@ -175,12 +175,76 @@ $("#submit").on("click", function (event) {
         $(".content").append(newsDiv);
         });
 
+
     } else {
 
         $("<p> Invalid selection, Please try again!</p>").modal();
        
        }
 });
+
+
+// added the TM
+$("#submit").on("click", function (event) {
+    event.preventDefault();
+
+
+    var location = $("#location-input").val().trim();
+    var ticketMasterAPIkey = "TFjXDEI1LogVpEJmc428NgcftKE2zdS6f";
+    var ticketURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=TFjXDEI1LogVpEJmc428NgcftKE2zdS6";
+
+    $.ajax({
+        url: ticketURL,
+        method: "GET"
+    })
+        .then(function (response) {
+            var results = response._embedded.events;
+            console.log(results);
+            var ticketsDiv = $("<div>");
+            
+            for (var i = 0; i < results.length; i++) {
+                var pname= $("<p>").text(results[i].name);
+                $(ticketsDiv).append(pname)
+                var pdate= $("<p>").text(results[i].dates.start.localDate);
+                $(ticketsDiv).append(pdate);
+            }
+            $(".ticket-information").append(ticketsDiv)
+        })
+});
+
+$("#submit").on("click", function (event){
+    event.preventDefault();
+    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")){
+
+        function breweryApi (){
+            
+            var url = "https://api.openbrewerydb.org/breweries?by_city=" + userLocation;
+            var breweryDiv = $("<div>");
+            breweryDiv.addClass("breweryDiv")
+            
+            $.ajax ({
+                url,
+                method: "Get"
+            }).then (function (response){
+                for (i = 0; i < 3; i++){
+                    var name = response[i].name;
+                    var street = response[i].street;
+        
+                breweryDiv.append("<h4>" + name + "</h4>");
+                breweryDiv.append("<p>" + street + "</p>");
+
+            }
+            $(".content").after(breweryDiv);
+            })
+        }
+        breweryApi();
+    } else {
+
+    $("<p> Invalid selection, Please try again!</p>").modal();
+   
+   }
+
+})
 
 
 //form validation check 
@@ -228,42 +292,5 @@ $('input[name="dates"]').daterangepicker({
 	showShortcuts: false,
 	showTopbar: false
 }, function(start, end, label) {
-  console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-});
-
-console.log($("#location-input").hasClass("valid"));
-console.log($("#date-input").hasClass("valid"));
-console.log($("#interest-input").hasClass("valid"));
-
-// $("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")
-// $('input[name="dates"]').daterangepicker();
-
-// added the TM
-
-
-$("#submit").on("click", function (event) {
-    event.preventDefault();
-
-
-    var location = $("#location-input").val().trim();
-    var ticketMasterAPIkey = "TFjXDEI1LogVpEJmc428NgcftKE2zdS6f";
-    var ticketURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=TFjXDEI1LogVpEJmc428NgcftKE2zdS6";
-
-    $.ajax({
-        url: ticketURL,
-        method: "GET"
-    })
-        .then(function (response) {
-            var results = response._embedded.events;
-            console.log(results);
-            var ticketsDiv = $("<div>");
-            
-            for (var i = 0; i < results.length; i++) {
-                var pname= $("<p>").text(results[i].name);
-                $(ticketsDiv).append(pname)
-                var pdate= $("<p>").text(results[i].dates.start.localDate);
-                $(ticketsDiv).append(pdate);
-            }
-            $(".ticket-information").html(ticketsDiv)
-        })
+  console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') );
 });
