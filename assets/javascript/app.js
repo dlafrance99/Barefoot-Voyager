@@ -17,12 +17,14 @@ $(".button-primary").on("click", function(event) {
     console.log(userInterests);
 
     $(".youtube-insert").empty();
-    youTubeAPICall();
+    // youTubeAPICall();
     openWeatherAPICall();
+    validation();
 });
 
 // Tie into YouTube API and display videos based on userLocation and userInterests
 function youTubeAPICall () {
+    validation();
     var locationYouTube = userLocation;
     var userInterestYouTube = userInterests;
     var searchYouTube = locationYouTube + " " + userInterestYouTube;
@@ -54,6 +56,7 @@ function youTubeAPICall () {
 
 // Tie into OpenWeather API and display current weather based on userLocation
 function openWeatherAPICall () {
+    validation();
     var locationWeather = userLocation;
     var apiKeyWeather = "cbe15fe8bd11f0165e29631925aca3d4";
 
@@ -65,11 +68,10 @@ function openWeatherAPICall () {
         url: queryURLOpenWeather,
         method: "GET"
     }).then(function (response){
-        // console.log(response)
 
-        var weatherOverlay = $("<div>")
+        var weatherOverlay = $("<div>");
 
-        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}`;
+        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}</p><hr><p>5 Day Forecase for ${response.name}<p><hr>`;
 
         weatherOverlay.append(infoWeatherOverlay);
         $(".weather-information").append(weatherOverlay);
@@ -83,9 +85,22 @@ function openWeatherAPICall () {
         console.log(response)
 
         for (var i = 7; i < 40; i+=8) {
-            var date = response.list[i].dt_txt;
-            var stringToDate = new Date(date);
-            console.log(stringToDate)
+            console.log(response.city.name);
+            console.log(response.list[i].main.temp);
+            console.log(response.list[i].weather[0].description);
+            console.log(response.list[i].wind.speed);
+            console.log(response.list[i].dt_txt);
+            
+            var weatherForecast = (moment(response.list[i].dt_txt, "YYYY/MM/DD Z").format("dddd, MMMM Do YYYY, ha"));
+            console.log(weatherForecast)
+
+            var forecastOverlay = $("<div>");
+
+            var forecastWeatherOverlay = `<p>Date: ${weatherForecast}</p><p>Temperature: ${response.list[i].main.temp} F</p><p>Current Conditions: ${response.list[i].weather[0].description}</p><p>Wind Speed: ${response.list[i].wind.speed} mph</p><hr>`
+
+            forecastOverlay.append(forecastWeatherOverlay);
+            $(".weather-forecast").append(forecastOverlay);
+
         }
 
     });
