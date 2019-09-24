@@ -6,7 +6,9 @@ var userInterests;
 
 // Grabs information from user input on forms after submit button is clicked 
 
-$(".button-primary").on("click", function(event) {
+$("#submit").on("click", function(event) {
+    validation();
+
     event.preventDefault();
 
     userLocation = $("#location-input").val().trim();
