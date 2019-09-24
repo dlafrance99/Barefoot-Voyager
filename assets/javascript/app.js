@@ -30,7 +30,9 @@ $("#submit").on("click", function(event) {
 });
 
 // Tie into YouTube API and display videos based on userLocation and userInterests
+
 function youTubeAPICall () {
+    validation();
     var locationYouTube = userLocation;
     var userInterestYouTube = userInterests;
     var searchYouTube = locationYouTube + " " + userInterestYouTube;
@@ -65,7 +67,9 @@ function youTubeAPICall () {
 })};
 
 // Tie into OpenWeather API and display current weather based on userLocation
+
 function openWeatherAPICall () {
+    validation();
     var locationWeather = userLocation;
     var apiKeyWeather = "cbe15fe8bd11f0165e29631925aca3d4";
 
@@ -73,21 +77,22 @@ function openWeatherAPICall () {
     var queryURLForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationWeather + "&appid=" + apiKeyWeather + "&units=imperial";
 
     // This AJAX calls the current weather for the destination city based on userLocation
+
     $.ajax({
         url: queryURLOpenWeather,
         method: "GET"
     }).then(function (response){
-        // console.log(response)
 
         var weatherOverlay = $("<div id='weather-div>")
 
-        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}`;
+        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}</p><hr><p>5 Day Forecast for ${response.name}<p><hr>`;
 
         weatherOverlay.append(infoWeatherOverlay);
         $(".content").append(weatherOverlay);
     });
 
     // This AJAX calls the forecasted weather for the destination city based on userLocation
+
     $.ajax({
         url: queryURLForecast,
         method: "GET"
@@ -95,15 +100,24 @@ function openWeatherAPICall () {
         console.log(response)
 
         for (var i = 7; i < 40; i+=8) {
-            var date = response.list[i].dt_txt;
-            var stringToDate = new Date(date);
-            console.log(stringToDate)
+            
+            var weatherForecast = (moment(response.list[i].dt_txt, "YYYY-MM-DD h:mm:ss").format("dddd, MMMM Do, h:mma"));
+            console.log(weatherForecast)
+
+            var forecastOverlay = $("<div>");
+
+            var forecastWeatherOverlay = `<p>Date: ${weatherForecast}</p><p>Temperature: ${response.list[i].main.temp} F</p><p>Current Conditions: ${response.list[i].weather[0].description}</p><p>Wind Speed: ${response.list[i].wind.speed} mph</p><hr>`
+
+            forecastOverlay.append(forecastWeatherOverlay);
+            $(".weather-forecast").append(forecastOverlay);
+
         }
 
     });
 };
 
 // news api 
+
 $("#submit").on("click", function (event) {
     event.preventDefault();
 
@@ -206,6 +220,7 @@ validation();
 
 
 //calendar 
+
 $('input[name="dates"]').daterangepicker({
 	showShortcuts: false,
 	showTopbar: false
