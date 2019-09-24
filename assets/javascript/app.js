@@ -246,6 +246,7 @@ $("#submit").on("click", function (event) {
 
 
     var location = $("#location-input").val().trim();
+    var Limit= 5;
     var ticketMasterAPIkey = "TFjXDEI1LogVpEJmc428NgcftKE2zdS6f";
     var ticketURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=TFjXDEI1LogVpEJmc428NgcftKE2zdS6";
 
@@ -258,12 +259,12 @@ $("#submit").on("click", function (event) {
             console.log(results);
             var ticketsDiv = $("<div>");
             
-            for (var i = 0; i < results.length; i++) {
+            for (var i = 0; i < 5; i++) {
                 var pname= $("<p>").text(results[i].name);
                 $(ticketsDiv).append(pname)
                 var pdate= $("<p>").text(results[i].dates.start.localDate);
                 $(ticketsDiv).append(pdate);
             }
-            $(".ticket-information").html(ticketsDiv)
+            $(".ticket-information").append(ticketsDiv)
         })
 });
