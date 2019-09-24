@@ -1,3 +1,7 @@
+/* font-family: 'Homemade Apple', cursive;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Slabo 27px', serif; */
+
 * {
     box-sizing: border-box;
 }
@@ -26,6 +30,8 @@ body {
    background-repeat: no-repeat;
    background-size: cover, contain;
    background-attachment: fixed;
+   font-family: 'Slabo 27px', serif;
+   font-size: 18x;
 }
 
 #form {
@@ -35,6 +41,7 @@ body {
     width: 53%;
     margin: auto;
     margin-top: 50px;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 
@@ -46,6 +53,8 @@ body {
     position: relative;
     top: 0;
     left: 0;
+    font-family: 'Homemade Apple', cursive;
+    text-align: center;
 }
 
 #logo {
@@ -138,6 +147,7 @@ hr {
 
 .content {
     margin: 20px;
+    font-size: 18x;
 }
 
  input.invalid:focus, input.invalid {
@@ -152,6 +162,21 @@ hr {
     padding: 40px;
     font-size: 20px;
     text-align: center;
+}
+
+#search-again {
+    font-family: 'Slabo 27px', serif;
+    font-size: 20px;
+    margin-top: 1%;
+}
+
+#submit {
+    font-family: 'Slabo 27px', serif;
+    font-size: 20px;
+}
+
+.row {
+    font-size: 18px;
 }
 
 /* overrides skeleton styling on calendar */
