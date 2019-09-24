@@ -33,6 +33,17 @@ $("#submit").on("click", function (event) {
     }
 });
 
+$("#search-again").on("click", function (event) {
+    event.preventDefault();
+
+    $("#weather-div").empty();
+    $(".forecast").empty();
+    $(".newsDiv").empty();
+    $(".ticket-information").empty();
+    $(".youtube-insert").empty();
+    $(".content").empty();
+});
+
 // Tie into YouTube API and display videos based on userLocation and userInterests
 
 function youTubeAPICall() {
