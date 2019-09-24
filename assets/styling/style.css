@@ -10,12 +10,13 @@
 
 .wrapper {
     height: 100vh;
+    position: relative;
 }
 
 body {
    background-image: url(../images/Mount\ Hood_Trillium\ Lake_9.16.17-6.jpg); 
    background-repeat: no-repeat;
-   background-size: auto 100%;
+   background-size: cover, contain;
    background-attachment: fixed;
 }
 
@@ -34,7 +35,7 @@ body {
     color: #ffffff;
     width: 100vw;
     padding: 10px;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
 }
@@ -43,10 +44,14 @@ body {
     height: 70px;
 }
 
+.content-wrapper {
+    padding-bottom: 150px;
+}
+
 .footer {
     background-color: darkturquoise;
     width: 100vw;
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     left: 0;
     text-align: center;
