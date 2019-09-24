@@ -9,9 +9,6 @@ var userInterests;
 $("#submit").on("click", function (event) {
     event.preventDefault();
 
-    $(".content").empty();
-    $(".youtube-insert").empty();
-
     userLocation = $("#location-input").val().trim();
     console.log(userLocation);
     userDates = $("#date-input").val().trim();
@@ -35,6 +32,10 @@ $("#submit").on("click", function (event) {
 
 $("#search-again").on("click", function (event) {
     event.preventDefault();
+
+    $("#location-input").val("");
+    $("#date-input").val("");
+    $("#interest-input").val("");
 
     $("#weather-div").empty();
     $(".forecast").empty();
@@ -229,6 +230,8 @@ function validation() {
         };
 
     })
+    
+    $("#date-input").val("");
 }
 
 //calendar 
