@@ -1,3 +1,7 @@
+// random background images 
+var randomImg = (Math.floor(Math.random()*3)+1);
+$("body").addClass(`image${randomImg}`)
+
 // Global Variables
 
 var userLocation;
@@ -100,7 +104,7 @@ function openWeatherAPICall() {
         method: "GET"
     }).then(function (response) {
 
-        var weatherOverlay = $("<div id='weather-div'>")
+        var weatherOverlay = $("<div class='weather-div'>")
 
         var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}</p><hr><p>5 Day Forecast for ${response.name}<p><hr>`;
 
@@ -121,7 +125,7 @@ function openWeatherAPICall() {
             var weatherForecast = (moment(response.list[i].dt_txt, "YYYY-MM-DD h:mm:ss").format("dddd, MMMM Do, h:mma"));
             console.log(weatherForecast)
 
-            var forecastOverlay = $("<div class='forecast'>");
+            var forecastOverlay = $("<div class='forecast-div'>");
 
             var forecastWeatherOverlay = `<p>Date: ${weatherForecast}</p><p>Temperature: ${response.list[i].main.temp} F</p><p>Current Conditions: ${response.list[i].weather[0].description}</p><p>Wind Speed: ${response.list[i].wind.speed} mph</p><hr>`
 
@@ -298,7 +302,7 @@ function ticketMasterAPICall() {
         .then(function (response) {
             var results = response._embedded.events;
             console.log(results);
-            var ticketsDiv = $("<div>");
+            var ticketsDiv = $("<div class='ticketmaster-div'>");
             
             for (var i = 0; i < 5; i++) {
                 var pname= $("<p>").text(results[i].name);
@@ -306,7 +310,7 @@ function ticketMasterAPICall() {
                 var pdate= $("<p>").text(results[i].dates.start.localDate);
                 $(ticketsDiv).append(pdate);
             }
-            $(".ticket-information").append(ticketsDiv)
+            $(".content").append(ticketsDiv)
         })
 };
 
