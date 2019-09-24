@@ -127,17 +127,21 @@ function validation (){
         }
 
     })
-    $("#date-input").on("input", function() {
-        var input = $(this);
-        var date = input.val();
+    $("#date-input").on("click", ".applyBtn", function() {
+        // var input = $("#date-input");
+        // var date = input.val();
+        
+        // input.removeClass("invalid").addClass("valid");
+        // $(".error-dates").remove();
 
-        if (date){
-            input.removeClass("invalid").addClass("valid");
-            $(".error-dates").remove();
-        } else {
-            input.removeClass("valid").addClass("invalid");
-            $(".error-dates").text("Please input a valid date range");
-        }
+        // console.log(date);
+        // if (date){
+        //     input.removeClass("invalid").addClass("valid");
+        //     $(".error-dates").remove();
+        // } else {
+        //     input.removeClass("valid").addClass("invalid");
+        //     $(".error-dates").text("Please input a valid date range");
+        // }
 
     })
     $("#interest-input").on("input", function() {
@@ -159,12 +163,16 @@ function validation (){
 validation();
 
 
-
+//calendar 
 $('input[name="dates"]').daterangepicker({
-	singleMonth: true,
 	showShortcuts: false,
 	showTopbar: false
 }, function(start, end, label) {
   console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
 });
 
+console.log($("#location-input").hasClass("valid"));
+console.log($("#date-input").hasClass("valid"));
+console.log($("#interest-input").hasClass("valid"));
+
+// $("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")
