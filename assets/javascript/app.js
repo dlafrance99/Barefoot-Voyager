@@ -7,8 +7,7 @@ var userInterests;
 // Grabs information from user input on forms after submit button is clicked 
 
 $("#submit").on("click", function(event) {
-    validation();
-
+    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")){
     event.preventDefault();
 
     userLocation = $("#location-input").val().trim();
@@ -21,6 +20,11 @@ $("#submit").on("click", function(event) {
     $(".youtube-insert").empty();
     youTubeAPICall();
     openWeatherAPICall();
+    } else {
+
+        $("<p> Invalid selection, Please try again!</p>").modal();
+       
+       }
 });
 
 // Tie into YouTube API and display videos based on userLocation and userInterests
