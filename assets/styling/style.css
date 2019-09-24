@@ -93,10 +93,6 @@ hr {
     margin: 20px;
 }
 
-p {
-    color: white;
-}
-
  input.invalid:focus, input.invalid {
     border: none;
 	border: 1px solid red;
