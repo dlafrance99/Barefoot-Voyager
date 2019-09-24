@@ -21,7 +21,8 @@ $("#submit").on("click", function (event) {
         youTubeAPICall();
         openWeatherAPICall();
         ticketMasterAPICall();
-        newsAPICall()
+        newsAPICall();
+        breweryAPICall();
 
     } else {
 
@@ -42,6 +43,7 @@ $("#search-again").on("click", function (event) {
     $(".newsDiv").empty();
     $(".ticket-information").empty();
     $(".youtube-insert").empty();
+    $(".breweryDiv").empty();
     $(".content").empty();
 });
 
@@ -133,68 +135,98 @@ function openWeatherAPICall() {
 
 // news api 
 function newsAPICall() {
-    // $("#submit").on("click", function (event) {
-    //     event.preventDefault();
 
-        if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
+    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
 
 
-            var location = $("#location-input").val().trim();
-            var articleLimit = 5;
-            var newsAPIkey = "3fe53b99010243faa5ad7667a9f9d73f";
-            var newsURL = "https://newsapi.org/v2/everything?q=" + location + "&apiKey=3fe53b99010243faa5ad7667a9f9d73f&pageSize=" + articleLimit;
+        var location = $("#location-input").val().trim();
+        var articleLimit = 5;
+        var newsAPIkey = "3fe53b99010243faa5ad7667a9f9d73f";
+        var newsURL = "https://newsapi.org/v2/everything?q=" + location + "&apiKey=3fe53b99010243faa5ad7667a9f9d73f&pageSize=" + articleLimit;
 
+
+        $.ajax({
+            url: newsURL,
+            method: "GET",
+        }).then(function (response) {
+            var articles = response.articles;
+            console.log(articles);
+            var newsDiv = $("<div>");
+            newsDiv.addClass("newsDiv")
+            for (var i = 0; i < articles.length; i++) {
+                var headline = articles[i].title;
+                var byline = articles[i].author;
+                var source = articles[i].source.name;
+                var articlepictureURL = articles[i].urlToImage;
+                var articleNumber = i + 1;
+                var articleUrl = articles[i].url;
+
+
+
+
+                var articleImage = $("<img>");
+                articleImage.attr("src", articlepictureURL);
+                articleImage.addClass("newsImg")
+
+                var newsSection = $("<div>");
+                newsSection.addClass("newsSection clearfix");
+
+                newsSection.append("<h5 class='headline'>" + articleNumber + ") <a href='" + articleUrl + "'>" + headline + "</a></h5>");
+                newsSection.append("<h6 class='byline'>By: " + byline + "</h6>");
+                newsSection.append("<h6 class='source'>Source: " + source + "</h6>");
+
+                newsSection.append(articleImage);
+                newsDiv.append(newsSection);
+
+                if (i < (articles.length - 1)) {
+                    newsDiv.append("<hr>");
+                }
+
+            };
+            newsDiv.prepend("<h4 id='news-header'>Top News</h4>")
+            $(".content").append(newsDiv);
+        });
+
+    } else {
+
+        $("<p> Invalid selection, Please try again!</p>").modal();
+
+    }
+};
+
+// Brewery API Call
+function breweryAPICall() {
+    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
+
+        function breweryApi() {
+
+            var url = "https://api.openbrewerydb.org/breweries?by_city=" + userLocation;
+            var breweryDiv = $("<div>");
+            breweryDiv.addClass("breweryDiv")
 
             $.ajax({
-                url: newsURL,
-                method: "GET",
+                url,
+                method: "Get"
             }).then(function (response) {
-                var articles = response.articles;
-                console.log(articles);
-                var newsDiv = $("<div>");
-                newsDiv.addClass("newsDiv")
-                for (var i = 0; i < articles.length; i++) {
-                    var headline = articles[i].title;
-                    var byline = articles[i].author;
-                    var source = articles[i].source.name;
-                    var articlepictureURL = articles[i].urlToImage;
-                    var articleNumber = i + 1;
-                    var articleUrl = articles[i].url;
+                for (i = 0; i < 3; i++) {
+                    var name = response[i].name;
+                    var street = response[i].street;
 
+                    breweryDiv.append("<h4>" + name + "</h4>");
+                    breweryDiv.append("<p>" + street + "</p>");
 
-
-
-                    var articleImage = $("<img>");
-                    articleImage.attr("src", articlepictureURL);
-                    articleImage.addClass("newsImg")
-
-                    var newsSection = $("<div>");
-                    newsSection.addClass("newsSection clearfix");
-
-                    newsSection.append("<h5 class='headline'>" + articleNumber + ") <a href='" + articleUrl + "'>" + headline + "</a></h5>");
-                    newsSection.append("<h6 class='byline'>By: " + byline + "</h6>");
-                    newsSection.append("<h6 class='source'>Source: " + source + "</h6>");
-
-                    newsSection.append(articleImage);
-                    newsDiv.append(newsSection);
-
-                    if (i < (articles.length - 1)) {
-                        newsDiv.append("<hr>");
-                    }
-
-                };
-                newsDiv.prepend("<h4 id='news-header'>Top News</h4>")
-                $(".content").append(newsDiv);
-            });
-
-        } else {
-
-            $("<p> Invalid selection, Please try again!</p>").modal();
-
+                }
+                $(".content").after(breweryDiv);
+            })
         }
-    };
-    // )};
+        breweryApi();
+    } else {
 
+        $("<p> Invalid selection, Please try again!</p>").modal();
+
+    }
+
+};
 
 //form validation check 
 
@@ -230,7 +262,7 @@ function validation() {
         };
 
     })
-    
+
     $("#date-input").val("");
 }
 
@@ -250,12 +282,8 @@ console.log($("#interest-input").hasClass("valid"));
 // $("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")
 // $('input[name="dates"]').daterangepicker();
 
-// added the TM
-
+// Ticket Master API Call
 function ticketMasterAPICall() {
-    // $("#submit").on("click", function (event) {
-    //     event.preventDefault();
-
 
     var location = $("#location-input").val().trim();
     var ticketMasterAPIkey = "TFjXDEI1LogVpEJmc428NgcftKE2zdS6f";
