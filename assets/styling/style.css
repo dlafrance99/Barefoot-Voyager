@@ -101,3 +101,21 @@ hr {
 .error-location, .error-dates, .error-interests {
     color: red;
 }
+.modal {
+    padding: 40px;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* overrides skeleton styling on calendar */
+th,
+  td {
+    padding: 0 0;
+    text-align: none;
+    border-bottom: none; }
+  th:first-child,
+  td:first-child {
+    padding-left: 0; }
+  th:last-child,
+  td:last-child {
+    padding-right: 0; }
