@@ -93,9 +93,9 @@ function openWeatherAPICall () {
 
 // news api 
 $("#submit").on("click", function (event) {
-    validation();
-
     event.preventDefault();
+
+    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")){
 
 
     var location = $("#location-input").val().trim();
@@ -143,8 +143,13 @@ $("#submit").on("click", function (event) {
 
         };
         $(".content").html(newsDiv);
-    });
+        });
 
+    } else {
+
+        $("<p> Invalid selection, Please try again!</p>").modal();
+       
+       }
 });
 
 
@@ -154,51 +159,66 @@ function validation (){
 
     $("#location-input").on("input", function() {
         var input = $(this);
-        var isText = input.val();
+        var location = input.val();
         input.addClass("invalid");
 
-        if (isText){
+        if (location){
             input.removeClass("invalid").addClass("valid");
-            $(".error-location").text("");
+            $(".error-location").remove();
+
         } else {
             input.removeClass("valid").addClass("invalid");
             $(".error-location").text("Please input a valid location");
         }
 
     })
-    $("#date-input").on("input", function() {
-        var input = $(this);
-        var isDate = input.val();
+    $("#date-input").on("click", ".applyBtn", function() {
+        // var input = $("#date-input");
+        // var date = input.val();
+        
+        // input.removeClass("invalid").addClass("valid");
+        // $(".error-dates").remove();
 
-        if (isDate){
-            input.removeClass("invalid").addClass("valid");
-            $(".error-dates").text("");
-        } else {
-            input.removeClass("valid").addClass("invalid");
-            $(".error-dates").text("Please input a valid date range");
-        }
+        // console.log(date);
+        // if (date){
+        //     input.removeClass("invalid").addClass("valid");
+        //     $(".error-dates").remove();
+        // } else {
+        //     input.removeClass("valid").addClass("invalid");
+        //     $(".error-dates").text("Please input a valid date range");
+        // }
 
     })
     $("#interest-input").on("input", function() {
         var input = $(this);
-        var isText = input.val();
+        var interest = input.val();
 
-        if (isText){
+        if (interest){
             input.removeClass("invalid").addClass("valid");
-            $(".error-interests").text("");
+            $(".error-interests").remove();
 
         } else {
             input.removeClass("valid").addClass("invalid");
             $(".error-interests").text("Please input a valid interest");
-        }
+        };
 
     })
-   
 }
 
 validation();
-// if()
 
 
+//calendar 
+$('input[name="dates"]').daterangepicker({
+	showShortcuts: false,
+	showTopbar: false
+}, function(start, end, label) {
+  console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+});
 
+console.log($("#location-input").hasClass("valid"));
+console.log($("#date-input").hasClass("valid"));
+console.log($("#interest-input").hasClass("valid"));
+
+// $("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")
 // $('input[name="dates"]').daterangepicker();
