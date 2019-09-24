@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Bearfoot Voyager</title>
 
     <!-- linking to normalize -->
@@ -14,11 +15,18 @@
     <!-- Linking Skeleton -->
     <link href="assets/styling/skeleton.css" rel="stylesheet" type="text/css">
 
+    <!--Linking Modal-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <!--Linking Style for Calendar-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
     <!-- Linking CSS -->
     <link href="assets/styling/style.css" rel="stylesheet" type="text/css">
 
     <!-- Linking jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
 </head>
 
@@ -34,52 +42,69 @@
                     </h1>
                 </header>
             </div>
+            <form>
+                <div id="form">
+                    <div class="row">
+                        <div class="twelve columns">
+                            <label for="location">Location</label>
+                            <input class="u-full-width" type="text" placeholder="Your Location" id="location-input">
+                            <span class="error-location"></span>
+                        </div>
+                        <div class="twelve columns">
+                            <label for="dates">Dates</label>
+                            <input class="u-full-width valid" type="text" name="dates" placeholder="Requested Dates"
+                                id="date-input">
+                            <span class="error-dates"></span>
+                        </div>
+                        <div class="twelve columns">
+                            <label for="interests">Interests</label>
+                            <input class="u-full-width" type="text" placeholder="What Interests You?"
+                                id="interest-input">
+                            <span class="error-interests"></span>
+                        </div>
+                        <input class="button-primary" type="submit" value="Submit" id="submit">
+                    </div>
+                </div>
 
-            <div class="content">
+                <div class="content">
 
-                <form>
-                    <div id="form">
+
+                    <div class="row">
+                        <div class="eight columns">
+                            <div class="news-information"></div>
+                        </div>
+                        <div class="four columns">
+                            <div class="weather-information"></div>
+                        </div>
                         <div class="row">
-                            <div class="twelve columns">
-                                <label for="destination">Location</label>
-                                <input class="u-full-width" type="text" placeholder="Your Location" id="location-input">
+                            <div class="eight columns">
+                                <div class="youtube-information"></div>
                             </div>
-                            <div class="twelve columns">
-                                <label for="destination">Dates</label>
-                                <input class="u-full-width" type="date" placeholder="Requested Dates" id="date-input">
-                            </div>
-                            <div class="twelve columns">
-                                <label for="destination">Interests</label>
-                                <input class="u-full-width" type="text" placeholder="What Interests You?"
-                                    id="interest-input">
-                            </div>
-                            <input class="button-primary" type="submit" value="Submit" id="submit">
                         </div>
                     </div>
-                </form>
+                    
+                </div>
+
             </div>
 
 
-            <div class="row">
-                <div class="eight columns">
-                    <div class="news-information"></div>
-                </div>
-                <div class="four columns">
-                    <div class="weather-information"></div>
-                </div>
-                <div class="row">
-                    <div class="eight columns">
-                        <div class="youtube-information"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <h5>footer</h5>
-        </div>
+                    <footer>
+                        <div class="footer">
+                            <h5>footer</h5>
+                        </div>
+                    </footer>
 
     </div>
+
+    <!-- Linking jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Linking Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+
+    <!-- Linking momentjs -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
     <!-- Linking Date Range Library -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
