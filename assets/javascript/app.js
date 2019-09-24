@@ -7,15 +7,17 @@ var userInterests;
 // Grabs information from user input on forms after submit button is clicked 
 
 $("#submit").on("click", function(event) {
-    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")){
     event.preventDefault();
-
+    
+    
     userLocation = $("#location-input").val().trim();
     console.log(userLocation);
     userDates = $("#date-input").val().trim();
     console.log(userDates);
     userInterests = $("#interest-input").val().trim();
     console.log(userInterests);
+    
+    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")){
 
     $(".youtube-insert").empty();
     youTubeAPICall();
@@ -40,22 +42,26 @@ function youTubeAPICall () {
         method: "GET"
       }).then(function (response) {
           
+          var newDivideYouTube = $("<div id='youtube-div'>");
+          var videoDiv = $("<div class='video'>");
           for (var i = 0; i < 3; i++){
             var youTubeVideoId = response.items[i].id.videoId
             var youTubePageAdd = "https://www.youtube.com/embed/" + youTubeVideoId;
-            var newDivideYouTube = $("<p>");
 
             var youTubePlace = $("<iframe>")
-            youTubePlace.attr("width", "460");
-            youTubePlace.attr("height", "315");
+            youTubePlace.attr("width", "auto");
+            youTubePlace.attr("height", "auto");
             youTubePlace.attr("src", youTubePageAdd);
             youTubePlace.attr("frameborder", "0");
             youTubePlace.attr("allow", "accelerometer; encrypted-media; gyroscope; picture-in-picture");
 
-            newDivideYouTube.append(youTubePlace);
-            $(".youtube-information").append(newDivideYouTube);
-            
-        };
+            videoDiv.append(youTubePlace);
+            };
+        newDivideYouTube.append(videoDiv);
+        newDivideYouTube.addClass("youtube-div");
+        $(".content").append(newDivideYouTube);
+        $(".youtube-div").prepend("<h4 id='youtube-header'>YouTube Videos</h4>")
+
 })};
 
 // Tie into OpenWeather API and display current weather based on userLocation
@@ -73,12 +79,12 @@ function openWeatherAPICall () {
     }).then(function (response){
         // console.log(response)
 
-        var weatherOverlay = $("<div>")
+        var weatherOverlay = $("<div id='weather-div>")
 
         var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}`;
 
         weatherOverlay.append(infoWeatherOverlay);
-        $(".weather-information").append(weatherOverlay);
+        $(".content").append(weatherOverlay);
     });
 
     // This AJAX calls the forecasted weather for the destination city based on userLocation
@@ -142,12 +148,13 @@ $("#submit").on("click", function (event) {
 
             newsSection.append(articleImage);
             newsDiv.append(newsSection);
-           
-           if (i<(articles.length-1)){
-               newsDiv.append("<hr>");
-           }
-
+            
+            if (i<(articles.length-1)){
+                newsDiv.append("<hr>");
+            }
+            
         };
+        newsDiv.prepend("<h4 id='news-header'>Top News</h4>")
         $(".content").html(newsDiv);
         });
 
@@ -178,23 +185,7 @@ function validation (){
         }
 
     })
-    $("#date-input").on("click", ".applyBtn", function() {
-        // var input = $("#date-input");
-        // var date = input.val();
-        
-        // input.removeClass("invalid").addClass("valid");
-        // $(".error-dates").remove();
-
-        // console.log(date);
-        // if (date){
-        //     input.removeClass("invalid").addClass("valid");
-        //     $(".error-dates").remove();
-        // } else {
-        //     input.removeClass("valid").addClass("invalid");
-        //     $(".error-dates").text("Please input a valid date range");
-        // }
-
-    })
+  
     $("#interest-input").on("input", function() {
         var input = $(this);
         var interest = input.val();
@@ -226,5 +217,4 @@ console.log($("#location-input").hasClass("valid"));
 console.log($("#date-input").hasClass("valid"));
 console.log($("#interest-input").hasClass("valid"));
 
-// $("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")
-// $('input[name="dates"]').daterangepicker();
+
