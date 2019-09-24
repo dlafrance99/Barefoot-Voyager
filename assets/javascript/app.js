@@ -71,7 +71,7 @@ function openWeatherAPICall () {
 
         var weatherOverlay = $("<div>");
 
-        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}</p><hr><p>5 Day Forecase for ${response.name}<p><hr>`;
+        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}</p><hr><p>5 Day Forecast for ${response.name}<p><hr>`;
 
         weatherOverlay.append(infoWeatherOverlay);
         $(".weather-information").append(weatherOverlay);
@@ -91,7 +91,7 @@ function openWeatherAPICall () {
             console.log(response.list[i].wind.speed);
             console.log(response.list[i].dt_txt);
             
-            var weatherForecast = (moment(response.list[i].dt_txt, "YYYY/MM/DD Z").format("dddd, MMMM Do YYYY, ha"));
+            var weatherForecast = (moment(response.list[i].dt_txt, "YYYY-MM-DD h:mm:ss").format("dddd, MMMM Do, h:mma"));
             console.log(weatherForecast)
 
             var forecastOverlay = $("<div>");
