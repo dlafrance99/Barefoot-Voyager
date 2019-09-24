@@ -7,7 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Bearfoot Voyager</title>
-    
+
+    <!-- linking to normalize -->
+
+    <link rel="stylesheet" href="assets/styling/Normalize.css">
+
     <!-- Linking Skeleton -->
     <link href="assets/styling/skeleton.css" rel="stylesheet" type="text/css">
     
@@ -22,18 +26,10 @@
 
     
 </head>
-<header></header>
 
 <body>
-    <div class="header">
-        <header>
-            <h1>
-                Bearfoot Voyager <img id="logo" atl="logo" src="assets/images/Logo_brown.png">
-            </h1>
-        </header>
-    </div>
+    <div class="wrapper">
 
-<div class="content">
 
     <form>
         <div id="form">
@@ -56,20 +52,42 @@
                 <input class="button-primary" type="submit" value="Submit" id="submit">
             </div>
         </div>
-    </form>
-</div>
-    
-    
-    <div class="row">
-        <div class="eight columns">
-            <div class= "news-information"></div>
+
+        <div class="content">
+
+            <form>
+                <div id="form">
+                    <div class="row">
+                        <div class="twelve columns">
+                            <label for="destination">Location</label>
+                            <input class="u-full-width" type="text" placeholder="Your Location" id="location-input">
+                        </div>
+                        <div class="twelve columns">
+                            <label for="destination">Dates</label>
+                            <input class="u-full-width" type="date" placeholder="Requested Dates" id="date-input">
+                        </div>
+                        <div class="twelve columns">
+                            <label for="destination">Interests</label>
+                            <input class="u-full-width" type="text" placeholder="What Interests You?"
+                                id="interest-input">
+                        </div>
+                        <input class="button-primary" type="submit" value="Submit" id="submit">
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="four columns">
-            <div class= "weather-information"></div>
+
+
+        <div class="row">
+            <div class="eight columns">
+                <div class="news-information"></div>
+            </div>
+            <div class="four columns">
+                <div class="weather-information"></div>
             </div>
             <div class="row">
                 <div class="eight columns">
-                    <div class= "youtube-information"></div>
+                    <div class="youtube-information"></div>
                 </div>
             </div>
             

@@ -18,10 +18,10 @@ $(".button-primary").on("click", function(event) {
 
     $(".youtube-insert").empty();
     youTubeAPICall();
+    openWeatherAPICall();
 });
 
 // Tie into YouTube API and display videos based on userLocation and userInterests
-
 function youTubeAPICall () {
     var locationYouTube = userLocation;
     var userInterestYouTube = userInterests;
@@ -33,10 +33,8 @@ function youTubeAPICall () {
         url: queryURLYouTube,
         method: "GET"
       }).then(function (response) {
-          console.log(response.items[0])
-          console.log(response.items[0].id.videoId)
           
-          for (var i = 0; i < 5; i++){
+          for (var i = 0; i < 3; i++){
             var youTubeVideoId = response.items[i].id.videoId
             var youTubePageAdd = "https://www.youtube.com/embed/" + youTubeVideoId;
             var newDivideYouTube = $("<p>");
@@ -53,6 +51,45 @@ function youTubeAPICall () {
             
         };
 })};
+
+// Tie into OpenWeather API and display current weather based on userLocation
+function openWeatherAPICall () {
+    var locationWeather = userLocation;
+    var apiKeyWeather = "cbe15fe8bd11f0165e29631925aca3d4";
+
+    var queryURLOpenWeather = "https://api.openweathermap.org/data/2.5/weather?q=" + locationWeather + "&appid=" + apiKeyWeather + "&units=imperial";
+    var queryURLForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + locationWeather + "&appid=" + apiKeyWeather + "&units=imperial";
+
+    // This AJAX calls the current weather for the destination city based on userLocation
+    $.ajax({
+        url: queryURLOpenWeather,
+        method: "GET"
+    }).then(function (response){
+        // console.log(response)
+
+        var weatherOverlay = $("<div>")
+
+        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}`;
+
+        weatherOverlay.append(infoWeatherOverlay);
+        $(".weather-information").append(weatherOverlay);
+    });
+
+    // This AJAX calls the forecasted weather for the destination city based on userLocation
+    $.ajax({
+        url: queryURLForecast,
+        method: "GET"
+    }).then(function (response){
+        console.log(response)
+
+        for (var i = 7; i < 40; i+=8) {
+            var date = response.list[i].dt_txt;
+            var stringToDate = new Date(date);
+            console.log(stringToDate)
+        }
+
+    });
+};
 
 // news api 
 $("#submit").on("click", function (event) {
@@ -90,11 +127,19 @@ $("#submit").on("click", function (event) {
             articleImage.attr("src", articlepictureURL);
             articleImage.addClass("newsImg")
 
-            newsDiv.append("<h5 id='headline'>" + articleNumber + ") <a href='"+ articleUrl + "'>" + headline + "</a></h5>");
-            newsDiv.append("<h6 id='byline'>By: " + byline + "</h6>");
-            newsDiv.append("<h6 id='source'>Source: " + source + "</h6>");
+            var newsSection = $("<div>");
+            newsSection.addClass("newsSection clearfix");
 
-            newsDiv.append(articleImage);
+            newsSection.append("<h5 class='headline'>" + articleNumber + ") <a href='"+ articleUrl + "'>" + headline + "</a></h5>");
+            newsSection.append("<h6 class='byline'>By: " + byline + "</h6>");
+            newsSection.append("<h6 class='source'>Source: " + source + "</h6>");
+
+            newsSection.append(articleImage);
+            newsDiv.append(newsSection);
+           
+           if (i<(articles.length-1)){
+               newsDiv.append("<hr>");
+           }
 
         };
         $(".content").html(newsDiv);
@@ -176,3 +221,4 @@ console.log($("#date-input").hasClass("valid"));
 console.log($("#interest-input").hasClass("valid"));
 
 // $("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")
+// $('input[name="dates"]').daterangepicker();
