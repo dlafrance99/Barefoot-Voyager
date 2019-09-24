@@ -43,8 +43,6 @@ function youTubeAPICall () {
         url: queryURLYouTube,
         method: "GET"
       }).then(function (response) {
-          console.log(response.items[0])
-          console.log(response.items[0].id.videoId)
           
           var newDivideYouTube = $("<div id='youtube-div'>");
           var videoDiv = $("<div class='video'>");
@@ -155,9 +153,8 @@ $("#submit").on("click", function (event) {
             articleImage.attr("src", articlepictureURL);
             articleImage.addClass("newsImg")
 
-            newsDiv.append("<h5 id='headline'>" + articleNumber + ") <a href='"+ articleUrl + "'>" + headline + "</a></h5>");
-            newsDiv.append("<h6 id='byline'>By: " + byline + "</h6>");
-            newsDiv.append("<h6 id='source'>Source: " + source + "</h6>");
+            var newsSection = $("<div>");
+            newsSection.addClass("newsSection clearfix");
 
             newsSection.append("<h5 class='headline'>" + articleNumber + ") <a href='"+ articleUrl + "'>" + headline + "</a></h5>");
             newsSection.append("<h6 class='byline'>By: " + byline + "</h6>");
@@ -174,8 +171,6 @@ $("#submit").on("click", function (event) {
         newsDiv.prepend("<h4 id='news-header'>Top News</h4>")
         $(".content").html(newsDiv);
         });
-
-        breweryApi();
 
     } else {
 
@@ -227,12 +222,16 @@ validation();
 //calendar 
 
 $('input[name="dates"]').daterangepicker({
-	singleMonth: true,
 	showShortcuts: false,
 	showTopbar: false
 }, function(start, end, label) {
   console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
 });
+
+console.log($("#location-input").hasClass("valid"));
+console.log($("#date-input").hasClass("valid"));
+console.log($("#interest-input").hasClass("valid"));
+
 
 function breweryApi (){
     
