@@ -22,7 +22,6 @@ $(".button-primary").on("click", function(event) {
 });
 
 // Tie into YouTube API and display videos based on userLocation and userInterests
-
 function youTubeAPICall () {
     var locationYouTube = userLocation;
     var userInterestYouTube = userInterests;
@@ -35,7 +34,7 @@ function youTubeAPICall () {
         method: "GET"
       }).then(function (response) {
           
-          for (var i = 0; i < 5; i++){
+          for (var i = 0; i < 3; i++){
             var youTubeVideoId = response.items[i].id.videoId
             var youTubePageAdd = "https://www.youtube.com/embed/" + youTubeVideoId;
             var newDivideYouTube = $("<p>");
@@ -137,7 +136,3 @@ $("#submit").on("click", function (event) {
     });
 
 });
-
-
-
-
