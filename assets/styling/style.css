@@ -10,12 +10,13 @@
 
 .wrapper {
     height: 100vh;
+    position: relative;
 }
 
 body {
    background-image: url(../images/Mount\ Hood_Trillium\ Lake_9.16.17-6.jpg); 
    background-repeat: no-repeat;
-   background-size: auto 100%;
+   background-size: cover, contain;
    background-attachment: fixed;
 }
 
@@ -23,9 +24,9 @@ body {
     background-color: #c4c4c4b7;    
     padding: 15px;
     border-radius: 10px;
-    width: 80%;
+    width: 53%;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 50px;
 }
 
 
@@ -34,7 +35,7 @@ body {
     color: #ffffff;
     width: 100vw;
     padding: 10px;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
 }
@@ -43,10 +44,13 @@ body {
     height: 70px;
 }
 
+.content-wrapper {
+    padding-bottom: 150px;
+}
+
 .footer {
     background-color: darkturquoise;
     width: 100vw;
-    position: absolute;
     bottom: 0;
     left: 0;
     text-align: center;
@@ -55,19 +59,53 @@ body {
 }
 
 .newsDiv {
-    background-color: dimgray;
+    background-color: rgba(105, 105, 105, 0.8);
     padding: 10px;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 50px;
     color: #ffffff;
-    width: 60%;
+    width: 50%;
     border-radius: 10px;
+    float: right;
+    margin-right: 3%;
+}
+
+.youtube-div {
+    background-color: rgba(105, 105, 105, 0.8);
+    padding: 10px;
+    margin: auto;
+    margin-top: 50px;
+    color: #ffffff;
+    width: 35%;
+    border-radius: 10px;
+    float: left;
+    margin-left: 3%;
+}
+
+.video {
+    text-align: center;
+}
+
+.headline {
+    margin-bottom: 0px;
 }
 
 .newsImg {
-    width: 300px;
+    width: 250px;
     float: right;
     margin: 10px;
+}
+
+#news-header {
+    text-align: center;
+}
+
+#youtube-header {
+    text-align: center;
+}
+
+.ytp-cued-thumbnail-overlay-image {
+    margin: auto;
 }
 
 .byline {
@@ -92,7 +130,6 @@ hr {
 .content {
     margin: 20px;
 }
-
 
  input.invalid:focus, input.invalid {
     border: none;
@@ -120,3 +157,5 @@ th,
   th:last-child,
   td:last-child {
     padding-right: 0; }
+
+    
