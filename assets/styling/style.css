@@ -106,13 +106,14 @@ h6 {
 .header {
     background-color: burlywood;
     color: #ffffff;
-    width: 100vw;
-    padding: 10px;
+    width: 99vw;
+    padding: 40px;
     position: relative;
-    top: 0;
     left: 0;
     font-family: 'Homemade Apple', cursive;
     text-align: center;
+    border-radius: 36px;
+    margin-top: -2%;
 }
 
 #logo-name {
@@ -139,19 +140,23 @@ h4 {
     height: 70px;
 }
 
-.content-wrapper {
+/* .content-wrapper {
     padding-bottom: 150px;
-}
+} */
 
 .footer {
-    background-color: darkturquoise;
+    background-color: brown;
     width: 100vw;
     left: 0;
     text-align: center;
     color: #ffffff;
-    height: 75px;
     position: absolute;
-    bottom: 0;
+    margin-top: 1rem;
+    border-style: solid;
+    border-color: black;
+    border-left: 0;
+    border-bottom: 0;
+    border-width: 1rem;
 }
 
 #newsBox {
@@ -310,6 +315,15 @@ iframe {
     background: beige;
     margin-bottom: 2rem;
     width: 80%;
+}
+
+#header-correct {
+    margin-top: none;
+}
+
+#footer-correct {
+    margin-bottom: 0;
+    margin-top: 1rem
 }
 
 /* overrides skeleton styling on calendar */
