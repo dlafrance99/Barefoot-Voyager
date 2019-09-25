@@ -6,7 +6,7 @@
 
 
 // random background images 
-var randomImg = (Math.floor(Math.random()*3)+1);
+var randomImg = (Math.floor(Math.random()*10)+1);
 $("body").addClass(`image${randomImg}`)
 
 // Global Variables
@@ -110,19 +110,31 @@ function newsAPICall() {
 
 
 
-
+                
+                var newsSection = $("<div>");
+                newsSection.addClass("newsSection clearfix");
+                
+                var headlineDiv = $("<div id='headline-div'>");
+                headlineDiv.append("<h5 class='headline'>" + articleNumber + ") <a href='" + articleUrl + "'>" + headline + "</a></h5>");
+                newsSection.append(headlineDiv);
+                
+                var ImgDiv = $("<div id='img-div'>");
                 var articleImage = $("<img>");
                 articleImage.attr("src", articlepictureURL);
                 articleImage.addClass("newsImg")
+                ImgDiv.append(articleImage);
+                newsSection.append(ImgDiv);
+                
+                var bylineDiv = $("<div id='byline-div'>");
+                bylineDiv.append("<h6 class='byline'>By: " + byline + "</h6>");
+                newsSection.append(bylineDiv);
+                newsSection.append("<br>");
+                
+                var SourceDiv = $("<div id='source-div'>");
+                SourceDiv.append("<h6 class='source'>Source: " + source + "</h6>");
+                newsSection.append(SourceDiv);
+                
 
-                var newsSection = $("<div>");
-                newsSection.addClass("newsSection clearfix");
-
-                newsSection.append("<h5 class='headline'>" + articleNumber + ") <a href='" + articleUrl + "'>" + headline + "</a></h5>");
-                newsSection.append("<h6 class='byline'>By: " + byline + "</h6>");
-                newsSection.append("<h6 class='source'>Source: " + source + "</h6>");
-
-                newsSection.append(articleImage);
                 newsDiv.append(newsSection);
 
                 if (i < (articles.length - 1)) {
