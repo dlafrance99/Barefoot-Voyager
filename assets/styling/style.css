@@ -120,7 +120,7 @@ h6 {
     margin: 20px;
     float: left;
     position: relative;
-    left: 5%;
+    /* left: 5%; */
 }
 
 h4 {
@@ -282,7 +282,7 @@ hr {
 
 .content {
     margin: 20px;
-    font-size: 18x;
+    font-size: 18px;
 }
 
 
@@ -302,12 +302,16 @@ hr {
     margin-top: 1%;
     border-radius: 18px;
     position: relative;
+    background-color: brown;
+    border-color: brown;
 }
 
 #submit {
     font-family: 'Slabo 27px', serif;
     font-size: 20px;
     border-radius: 18px;
+    background-color: brown;
+    border-color: brown;
 }
 
 iframe {
@@ -365,7 +369,7 @@ th,
         position: relative;
         float: right;
         top: -53px;
-        right: -17px;
+        right: -49px;
         width: 160px;
         padding: 0;
         
@@ -373,12 +377,25 @@ th,
     #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
         width: 95%;
         margin-top: 10px;
+        margin-right: 3%;
+        margin-left: 0%;
     } 
     #logo-name {
-        margin: none;
-        left: 0;
+        margin: auto;
+        left: -25px;
+        top: -15px;
     }
 
+}
+
+@media (min-width: 735px) {
+    #search-again {
+        position: relative;
+        float: right;
+        width: 295px;
+        padding: 0;
+        top: -40px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -387,7 +404,7 @@ th,
     }
     #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
         width: 95%;
-        margin-top: 0px;
+        margin-top: 50px;
     } 
     #search-again {
         position: relative;
@@ -397,19 +414,34 @@ th,
     }
 }
 @media (min-width: 843px){
-    #search-again {
-        right: -16px;
-        top: 72px;
-    }
-}
-
-@media (min-width: 980px){
     #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
         width: 45%;
         margin-top: 50px;
+        
     } 
+    #newsBox{
+        float: left;
+        margin-top: 76px;
+        margin-left: 32px;
+    }
+    #youTubeBox{
+        margin-left: 32px;
+    }
+    #search-again {
+        right: -45px;
+        
+    }
+}
+
+@media (min-width: 871px){
+
     #search-again {
         margin: 5px;
+        top: 48px;
+        right: -36px;
+    }
+    #newsBox{
+        margin-top: 50px;
     }
 }
 

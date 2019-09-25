@@ -76,9 +76,9 @@ function divCreator() {
     var contentbox = $("<div class='content-box'>");
     contentbox.append("<div id='newsBox'>");
     contentbox.append("<div id='ticketmasterBox'>");
+    contentbox.append("<div id='breweryBox'>");
     contentbox.append("<div id='youTubeBox'>");
     contentbox.append("<div id='forecastBox'>");
-    contentbox.append("<div id='breweryBox'>");
     
     $(".content").append(contentbox);
 }
@@ -86,65 +86,65 @@ function divCreator() {
 function newsAPICall() {
 
 
-        var location = $("#location-input").val().trim();
-        var articleLimit = 5;
-        var newsAPIkey = "3fe53b99010243faa5ad7667a9f9d73f";
-        var newsURL = "https://newsapi.org/v2/everything?q=" + location + "&apiKey=3fe53b99010243faa5ad7667a9f9d73f&pageSize=" + articleLimit;
+    var location = $("#location-input").val().trim();
+    var articleLimit = 5;
+    var newsAPIkey = "3fe53b99010243faa5ad7667a9f9d73f";
+    var newsURL = "https://newsapi.org/v2/everything?q=" + location + "&apiKey=3fe53b99010243faa5ad7667a9f9d73f&pageSize=" + articleLimit;
 
 
-        $.ajax({
-            url: newsURL,
-            method: "GET",
-        }).then(function (response) {
-            var articles = response.articles;
-            console.log(articles);
-            var newsDiv = $("<div>");
-            newsDiv.addClass("newsDiv")
-            for (var i = 0; i < articles.length; i++) {
-                var headline = articles[i].title;
-                var byline = articles[i].author;
-                var source = articles[i].source.name;
-                var articlepictureURL = articles[i].urlToImage;
-                var articleNumber = i + 1;
-                var articleUrl = articles[i].url;
+    $.ajax({
+        url: newsURL,
+        method: "GET",
+    }).then(function (response) {
+        var articles = response.articles;
+        console.log(articles);
+        var newsDiv = $("<div>");
+        newsDiv.addClass("newsDiv")
+        for (var i = 0; i < articles.length; i++) {
+            var headline = articles[i].title;
+            var byline = articles[i].author;
+            var source = articles[i].source.name;
+            var articlepictureURL = articles[i].urlToImage;
+            var articleNumber = i + 1;
+            var articleUrl = articles[i].url;
 
 
 
-                
-                var newsSection = $("<div>");
-                newsSection.addClass("newsSection clearfix");
-                
-                var headlineDiv = $("<div id='headline-div'>");
-                headlineDiv.append("<h5 class='headline'>" + articleNumber + ") <a href='" + articleUrl + "'>" + headline + "</a></h5>");
-                newsSection.append(headlineDiv);
-                
-                var ImgDiv = $("<div id='img-div'>");
-                var articleImage = $("<img>");
-                articleImage.attr("src", articlepictureURL);
-                articleImage.addClass("newsImg")
-                ImgDiv.append(articleImage);
-                newsSection.append(ImgDiv);
-                
-                var bylineDiv = $("<div id='byline-div'>");
-                bylineDiv.append("<h6 class='byline'>By: " + byline + "</h6>");
-                newsSection.append(bylineDiv);
-                newsSection.append("<br>");
-                
-                var SourceDiv = $("<div id='source-div'>");
-                SourceDiv.append("<h6 class='source'>Source: " + source + "</h6>");
-                newsSection.append(SourceDiv);
-                
+            
+            var newsSection = $("<div>");
+            newsSection.addClass("newsSection clearfix");
+            
+            var headlineDiv = $("<div id='headline-div'>");
+            headlineDiv.append("<h5 class='headline'>" + articleNumber + ") <a href='" + articleUrl + "'>" + headline + "</a></h5>");
+            newsSection.append(headlineDiv);
+            
+            var ImgDiv = $("<div id='img-div'>");
+            var articleImage = $("<img>");
+            articleImage.attr("src", articlepictureURL);
+            articleImage.addClass("newsImg")
+            ImgDiv.append(articleImage);
+            newsSection.append(ImgDiv);
+            
+            var bylineDiv = $("<div id='byline-div'>");
+            bylineDiv.append("<h6 class='byline'>By: " + byline + "</h6>");
+            newsSection.append(bylineDiv);
+            newsSection.append("<br>");
+            
+            var SourceDiv = $("<div id='source-div'>");
+            SourceDiv.append("<h6 class='source'>Source: " + source + "</h6>");
+            newsSection.append(SourceDiv);
+            
 
-                newsDiv.append(newsSection);
+            newsDiv.append(newsSection);
 
-                if (i < (articles.length - 1)) {
-                    newsDiv.append("<hr>");
-                }
+            if (i < (articles.length - 1)) {
+                newsDiv.append("<hr>");
+            }
 
-            };
-            newsDiv.prepend("<h4 id='news-header'>Top News</h4>")
-            $("#newsBox").append(newsDiv);
-        });
+        };
+        newsDiv.prepend("<h4 id='news-header'>Top News</h4>")
+        $("#newsBox").append(newsDiv);
+    });
 
 };
 
@@ -197,12 +197,11 @@ function youTubeAPICall() {
             var youTubeVideoId = response.items[i].id.videoId
             var youTubePageAdd = "https://www.youtube.com/embed/" + youTubeVideoId;
 
-            var youTubePlace = $("<iframe>")
-            // youTubePlace.attr("width", "460px");
-            // youTubePlace.attr("height", "240px");
+            var youTubePlace = $("<iframe>");
             youTubePlace.attr("src", youTubePageAdd);
             youTubePlace.attr("frameborder", "0");
             youTubePlace.attr("allow", "accelerometer; encrypted-media; gyroscope; picture-in-picture");
+            youTubePlace.attr("allowfullscreen", "true")
 
             videoDiv.append(youTubePlace);
         };
@@ -231,7 +230,7 @@ function openWeatherAPICall() {
 
         var weatherOverlay = $("<div class='weather-div'>")
 
-        var infoWeatherOverlay = `<p><h5>Today's Weather Information for ${response.name}</h5></p><hr><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}</p><hr><p>5 Day Forecast For ${response.name}</p><hr>`;
+        var infoWeatherOverlay = `<p><h5>Today's Weather Information for ${response.name}</h5></p><hr><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}</p><hr><h5>5 Day Forecast For ${response.name}</h5><hr>`;
 
         weatherOverlay.append(infoWeatherOverlay);
         $("#forecastBox").prepend(weatherOverlay);
@@ -354,10 +353,6 @@ $('input[name="dates"]').daterangepicker({
 }, function(start, end, label) {
   console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
 });
-
-console.log($("#location-input").hasClass("valid"));
-console.log($("#date-input").hasClass("valid"));
-console.log($("#interest-input").hasClass("valid"));
 
 
 validation();
