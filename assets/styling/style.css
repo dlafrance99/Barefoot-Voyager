@@ -376,10 +376,10 @@ th,
         padding: 0;
     }
 }
-@media (min-width: 842px){
+@media (min-width: 843px){
     #search-again {
-        right: -10px;
-        top: -45px;
+        right: -16px;
+        top: 72px;
     }
 }
 
