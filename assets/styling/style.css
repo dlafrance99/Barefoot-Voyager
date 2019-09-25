@@ -123,6 +123,10 @@ h6 {
     /* left: 5%; */
 }
 
+h4 {
+    text-align: center;
+}
+
 #search-again {
     margin: 20px;
     float: right;
@@ -136,9 +140,9 @@ h6 {
     height: 70px;
 }
 
-.content-wrapper {
+/* .content-wrapper {
     padding-bottom: 150px;
-}
+} */
 
 .footer {
     background-color: brown;
@@ -297,12 +301,16 @@ hr {
     margin-top: 1%;
     border-radius: 18px;
     position: relative;
+    background-color: brown;
+    border-color: brown;
 }
 
 #submit {
     font-family: 'Slabo 27px', serif;
     font-size: 20px;
     border-radius: 18px;
+    background-color: brown;
+    border-color: brown;
 }
 
 iframe {
@@ -372,8 +380,9 @@ th,
         margin-left: 0%;
     } 
     #logo-name {
-        margin: none;
-        left: 0;
+        margin: auto;
+        left: -25px;
+        top: -15px;
     }
 
 }
@@ -394,6 +403,18 @@ th,
     }
 }
 @media (min-width: 843px){
+    #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
+        width: 45%;
+        margin-top: 50px;
+        
+    } 
+    #newsBox{
+        float: left;
+        margin-top: 76px;
+    }
+    #breweryBox {
+        float: left;
+    }
     #search-again {
         right: -45px;
         
@@ -401,11 +422,7 @@ th,
 }
 
 @media (min-width: 980px){
-    #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
-        width: 45%;
-        margin-top: 50px;
-        
-    } 
+
     #search-again {
         margin: 5px;
     }
