@@ -12,26 +12,31 @@ font-family: 'Slabo 27px', serif; */
     display: block;
 }
 
-p {
-    background-color: #ffffff;
-}
 
-.forecast {
-    background-color: blue;
-}
 
 .wrapper {
     min-height: 100vh;
     position: relative;
 }
 
-body {
-   background-image: url(../images/Mount\ Hood_Trillium\ Lake_9.16.17-6.jpg); 
-   background-repeat: no-repeat;
-   background-size: cover, contain;
-   background-attachment: fixed;
-   font-family: 'Slabo 27px', serif;
-   font-size: 18x;
+
+.image1 {
+    background-image: url(../images/Mount_Hood_Trillium\ Lake_9.16.17-6_1.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover, contain;
+    background-attachment: fixed;
+}
+.image2 {
+    background-image: url(../images/Crystal\ Mill_8.8.17-8.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover, contain;
+    background-attachment: fixed;
+}
+.image3 {
+    background-image: url(../images/Silverthorne_8.7.17_1.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover, contain;
+    background-attachment: fixed;
 }
 
 #form {
@@ -81,10 +86,45 @@ body {
     margin: auto;
     margin-top: 50px;
     color: #ffffff;
+    width: 45%;
+    border-radius: 10px;
+    float: right;
+    margin-right: 3%;
+}
+
+.ticketmaster-div {
+    background-color: rgba(105, 105, 105, 0.8);
+    padding: 10px;
+    margin: auto;
+    margin-top: 50px;
+    color: #ffffff;
+    width: 45%;
+    border-radius: 10px;
+    float: left;
+    margin-left: 3%;
+}
+.weather-div {
+    background-color: rgba(105, 105, 105, 0.8);
+    padding: 10px;
+    margin: auto;
+    margin-top: 50px;
+    color: #ffffff;
     width: 50%;
     border-radius: 10px;
     float: right;
     margin-right: 3%;
+}
+
+.forecast-div {
+    background-color: rgba(105, 105, 105, 0.8);
+    padding: 10px;
+    margin: auto;
+    margin-top: 50px;
+    color: #ffffff;
+    width: 35%;
+    border-radius: 10px;
+    float: left;
+    margin-left: 3%; 
 }
 
 .youtube-div {
