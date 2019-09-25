@@ -146,7 +146,7 @@ h4 {
 
 .footer {
     background-color: brown;
-    width: 100vw;
+    width: 99vw;
     left: 0;
     text-align: center;
     color: #ffffff;
@@ -157,6 +157,7 @@ h4 {
     border-left: 0;
     border-bottom: 0;
     border-width: 1rem;
+    border-right: 0;
 }
 
 #newsBox {
