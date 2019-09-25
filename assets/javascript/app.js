@@ -60,6 +60,7 @@ function youTubeAPICall() {
         url: queryURLYouTube,
         method: "GET"
     }).then(function (response) {
+        console.log(response)
 
         var newDivideYouTube = $("<div id='youtube-div'>");
         var videoDiv = $("<div class='video'>");
