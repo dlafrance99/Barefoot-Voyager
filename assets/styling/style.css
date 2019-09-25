@@ -132,6 +132,17 @@
     float: left;
     margin-left: 3%;
 }
+.breweryDiv {
+    background-color: rgba(105, 105, 105, 0.8);
+    padding: 10px;
+    margin: auto;
+    margin-top: 50px;
+    color: #ffffff;
+    width: 35%;
+    border-radius: 10px;
+    float: left;
+    margin-left: 3%;
+}
 
 .video {
     text-align: center;
@@ -182,10 +193,6 @@ hr {
     margin: 20px;
 }
 
- input.invalid:focus, input.invalid {
-    border: none;
-	border: 1px solid red;
-}
 
 .error-location, .error-dates, .error-interests {
     color: red;

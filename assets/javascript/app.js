@@ -8,9 +8,6 @@ var userLocation;
 var userDates;
 var userInterests;
 
-
-$(".modal").addClass("logoModal")
-
 // Grabs information from user input on forms after submit button is clicked 
 
 $("#submit").on("click", function (event) {
@@ -23,13 +20,16 @@ $("#submit").on("click", function (event) {
     userInterests = $("#interest-input").val().trim();
     console.log(userInterests);
 
+    
+
     if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
 
-        youTubeAPICall();
+        // youTubeAPICall();
         openWeatherAPICall();
         ticketMasterAPICall();
         newsAPICall();
         breweryAPICall();
+        hideForm();
 
     } else {
 
@@ -40,11 +40,11 @@ $("#submit").on("click", function (event) {
 
 $("#search-again").on("click", function (event) {
     event.preventDefault();
-
+    showForm();
     $("#location-input").val("");
     $("#date-input").val("");
     $("#interest-input").val("");
-
+    
     $("#weather-div").empty();
     $(".forecast").empty();
     $(".newsDiv").empty();
@@ -52,8 +52,18 @@ $("#search-again").on("click", function (event) {
     $(".youtube-insert").empty();
     $(".breweryDiv").empty();
     $(".content").empty();
+    validation();
 });
 
+function hideForm() {
+    var form = $("#form")
+    form.hide();
+}
+
+function showForm(){
+    var form = $("#form")
+    form.show();
+}
 // Tie into YouTube API and display videos based on userLocation and userInterests
 
 function youTubeAPICall() {
@@ -223,7 +233,7 @@ function breweryAPICall() {
                     breweryDiv.append("<p>" + street + "</p>");
 
                 }
-                $(".content").after(breweryDiv);
+                $(".content").append(breweryDiv); //updated to append vs .after so that this shows above footer
             })
         }
         breweryApi();
@@ -235,9 +245,15 @@ function breweryAPICall() {
 
 };
 
+function resetValidation(){
+    $("#location-input").removeClass("valid").addClass("invalid");
+    $("#interest-input").removeClass("valid").addClass("invalid");
+}
+
 //form validation check 
 
 function validation() {
+    resetValidation();
 
     $("#location-input").on("input", function () {
         var input = $(this);
@@ -321,33 +337,5 @@ console.log($("#location-input").hasClass("valid"));
 console.log($("#date-input").hasClass("valid"));
 console.log($("#interest-input").hasClass("valid"));
 
-// $("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")
-// $('input[name="dates"]').daterangepicker();
-
-// Ticket Master API Call
-// function ticketMasterAPICall() {
-
-//     var location = $("#location-input").val().trim();
-//     var ticketMasterAPIkey = "TFjXDEI1LogVpEJmc428NgcftKE2zdS6f";
-//     var ticketURL = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + location + "&apikey=TFjXDEI1LogVpEJmc428NgcftKE2zdS6";
-
-//     $.ajax({
-//         url: ticketURL,
-//         method: "GET"
-//     })
-//         .then(function (response) {
-//             var results = response._embedded.events;
-//             console.log(results);
-//             var ticketsDiv = $("<div>");
-
-//             for (var i = 0; i < results.length; i++) {
-//                 var pname = $("<p>").text(results[i].name);
-//                 $(ticketsDiv).append(pname)
-//                 var pdate = $("<p>").text(results[i].dates.start.localDate);
-//                 $(ticketsDiv).append(pdate);
-//             }
-//             $(".ticket-information").html(ticketsDiv)
-//         })
-// };
 
 validation();
