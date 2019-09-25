@@ -354,10 +354,6 @@ $('input[name="dates"]').daterangepicker({
   console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
 });
 
-console.log($("#location-input").hasClass("valid"));
-console.log($("#date-input").hasClass("valid"));
-console.log($("#interest-input").hasClass("valid"));
-
 
 validation();
 

@@ -353,6 +353,8 @@ th,
     #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
         width: 95%;
         margin-top: 10px;
+        margin-right: 3%;
+        margin-left: 0%;
     } 
     #logo-name {
         margin: none;
@@ -387,6 +389,7 @@ th,
     #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
         width: 45%;
         margin-top: 50px;
+        
     } 
     #search-again {
         margin: 5px;
