@@ -120,7 +120,7 @@ h6 {
     margin: 20px;
     float: left;
     position: relative;
-    left: 5%;
+    /* left: 5%; */
 }
 
 #search-again {
@@ -360,7 +360,7 @@ th,
         position: relative;
         float: right;
         top: -53px;
-        right: -17px;
+        right: -49px;
         width: 160px;
         padding: 0;
         
@@ -395,8 +395,8 @@ th,
 }
 @media (min-width: 843px){
     #search-again {
-        right: -16px;
-        top: 72px;
+        right: -45px;
+        
     }
 }
 
