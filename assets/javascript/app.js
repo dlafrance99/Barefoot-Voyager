@@ -153,9 +153,6 @@ function openWeatherAPICall() {
 // news api 
 function newsAPICall() {
 
-    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
-
-
         var location = $("#location-input").val().trim();
         var articleLimit = 5;
         var newsAPIkey = "3fe53b99010243faa5ad7667a9f9d73f";
@@ -204,17 +201,11 @@ function newsAPICall() {
             $(".content").append(newsDiv);
         });
 
-    } else {
-
-        $("<p> Invalid selection, Please try again!</p>").modal();
-
-    }
 };
 
 // Brewery API Call
 function breweryAPICall() {
-    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
-
+  
         function breweryApi() {
 
             var url = "https://api.openbrewerydb.org/breweries?by_city=" + userLocation;
@@ -228,23 +219,21 @@ function breweryAPICall() {
                 for (i = 0; i < 3; i++) {
                     var name = response[i].name;
                     var street = response[i].street;
+                    var city = response[i].city;
 
                     breweryDiv.append("<h4>" + name + "</h4>");
-                    breweryDiv.append("<p>" + street + "</p>");
+                    breweryDiv.append("<p>" + street + " " + city + "</p>");
 
                 }
                 $(".content").append(breweryDiv); //updated to append vs .after so that this shows above footer
             })
         }
         breweryApi();
-    } else {
-
-        $("<p> Invalid selection, Please try again!</p>").modal();
-
-    }
 
 };
 
+
+//fixes validation issue after second search
 function resetValidation(){
     $("#location-input").removeClass("valid").addClass("invalid");
     $("#interest-input").removeClass("valid").addClass("invalid");
@@ -301,9 +290,6 @@ $('input[name="dates"]').daterangepicker({
 console.log($("#location-input").hasClass("valid"));
 console.log($("#date-input").hasClass("valid"));
 console.log($("#interest-input").hasClass("valid"));
-
-// $("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")
-// $('input[name="dates"]').daterangepicker();
 
 // added the TM
 
