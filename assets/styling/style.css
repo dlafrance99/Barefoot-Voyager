@@ -22,26 +22,79 @@ body {
 }
 
 .image1 {
-    background-image: url(../images/Mount_Hood_Trillium\ Lake_9.16.17-6_1.jpg); 
+    background-image: url(../images/AerialTrail.jpg); 
     background-repeat: no-repeat;
     background-size: cover, contain;
     background-attachment: fixed;
 }
 .image2 {
-    background-image: url(../images/Crystal\ Mill_8.8.17-8.jpg); 
+    background-image: url(../images/AerialTrees.jpg); 
     background-repeat: no-repeat;
     background-size: cover, contain;
     background-attachment: fixed;
 }
 .image3 {
-    background-image: url(../images/Silverthorne_8.7.17_1.jpg); 
+    background-image: url(../images/Canyonlands.jpg); 
     background-repeat: no-repeat;
     background-size: cover, contain;
     background-attachment: fixed;
 }
 
+.image4 {
+    background-image: url(../images/Cathedral.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover, contain;
+    background-attachment: fixed;
+}
+
+.image5 {
+    background-image: url(../images/MountHood.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover, contain;
+    background-attachment: fixed;
+}
+
+.image6 {
+    background-image: url(../images/Olympic.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover, contain;
+    background-attachment: fixed;
+}
+
+.image7 {
+    background-image: url(../images/SilverThorne.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover, contain;
+    background-attachment: fixed;
+}
+
+.image8 {
+    background-image: url(../images/YosemiteStars.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover, contain;
+    background-attachment: fixed;
+}
+
+.image9 {
+    background-image: url(../images/foggyRoad.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover, contain;
+    background-attachment: fixed;
+}
+
+.image10 {
+    background-image: url(../images/foggyTrees.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover, contain;
+    background-attachment: fixed;
+}
+
+h6 {
+    margin-bottom: 0;
+}
+
 #form {
-    background-color: #c4c4c4b7;    
+    background-color: #c4c4c4cb;    
     padding: 15px;
     border-radius: 10px;
     width: 53%;
@@ -54,13 +107,29 @@ body {
     background-color: burlywood;
     color: #ffffff;
     width: 99vw;
-    padding: 10px;
+    padding: 40px;
     position: relative;
     left: 0;
     font-family: 'Homemade Apple', cursive;
     text-align: center;
     border-radius: 36px;
     margin-top: -2%;
+}
+
+#logo-name {
+    margin: 20px;
+    float: left;
+    position: relative;
+    left: 5%;
+}
+
+#search-again {
+    margin: 20px;
+    float: right;
+    position: absolute;
+    right: 5%;
+    top: 25%
+
 }
 
 #logo {
@@ -155,14 +224,30 @@ body {
     margin-bottom: 0px;
 }
 
-.newsImg {
-    width: 250px;
-    float: right;
-    margin: 10px;
-}
-
 #news-header {
     text-align: center;
+}
+
+#byline-div {
+    float: left;
+    width: 45%;
+    margin-left: 4%;
+}
+
+#source-div {
+    float: left;
+    width: 45%;
+    margin-left: 4%;
+}
+
+.newsImg {
+    width: 100%;
+}
+
+#img-div {
+    float: right;
+    width: 45%;
+    margin-right: 4%;
 }
 
 #youtube-header {
@@ -173,15 +258,6 @@ body {
     margin: auto;
 }
 
-.byline {
-    float: left;
-    margin: 10px;
-}
-
-.source {
-    float: left;
-    margin: 10px;
-}
 
 a {
     color: #ffffff;
@@ -235,7 +311,7 @@ iframe {
 }
 
 #header-correct {
-    margin-top: 2%;
+    margin-top: none;
 }
 
 #footer-correct {
