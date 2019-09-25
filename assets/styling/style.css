@@ -123,6 +123,10 @@ h6 {
     left: 5%;
 }
 
+h4 {
+    text-align: center;
+}
+
 #search-again {
     margin: 20px;
     float: right;
@@ -136,9 +140,9 @@ h6 {
     height: 70px;
 }
 
-.content-wrapper {
+/* .content-wrapper {
     padding-bottom: 150px;
-}
+} */
 
 .footer {
     background-color: brown;

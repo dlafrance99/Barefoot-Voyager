@@ -172,6 +172,7 @@ function ticketMasterAPICall() {
                 var pdate= $("<p>").text(results[i].dates.start.localDate);
                 $(ticketsDiv).append(pdate);
             }
+            $("#ticketmasterBox").prepend("<h4>Events</h4>")
             $("#ticketmasterBox").append(ticketsDiv)
         })
 };
@@ -208,7 +209,7 @@ function youTubeAPICall() {
         newDivideYouTube.append(videoDiv);
         $("#youTubeBox").append(newDivideYouTube);
         newDivideYouTube.addClass("youtube-div");
-        $(".youtube-div").prepend("<h4 id='youtube-header'>YouTube Videos</h4>")
+        $("#youTubeBox").prepend("<h4>YouTube Videos</h4>")
     });
 };
 
@@ -230,7 +231,7 @@ function openWeatherAPICall() {
 
         var weatherOverlay = $("<div class='weather-div'>")
 
-        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><hr><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}</p><hr><p>5 Day Forecast For ${response.name}</p><hr>`;
+        var infoWeatherOverlay = `<p><h5>Today's Weather Information for ${response.name}</h5></p><hr><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}</p><hr><p>5 Day Forecast For ${response.name}</p><hr>`;
 
         weatherOverlay.append(infoWeatherOverlay);
         $("#forecastBox").prepend(weatherOverlay);
