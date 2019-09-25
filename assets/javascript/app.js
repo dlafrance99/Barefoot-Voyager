@@ -1,3 +1,10 @@
+// //flash of unstyled content fix
+
+// // $("#fouc").style(display = "block");
+
+// document.getElementById("fouc").style.display="block";
+
+
 // random background images 
 var randomImg = (Math.floor(Math.random()*10)+1);
 $("body").addClass(`image${randomImg}`)
@@ -20,15 +27,18 @@ $("#submit").on("click", function (event) {
     userInterests = $("#interest-input").val().trim();
     console.log(userInterests);
 
+    
+
     if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
 
         divCreator();
         newsAPICall();
         ticketMasterAPICall();
-        youTubeAPICall();
+        // youTubeAPICall();
         openWeatherAPICall();
         breweryAPICall();
-        
+        hideForm();
+
     } else {
         
         $("<p> Invalid selection, Please try again!</p>").modal();
@@ -38,7 +48,7 @@ $("#submit").on("click", function (event) {
 
 $("#search-again").on("click", function (event) {
     event.preventDefault();
-    
+    showForm();
     $("#location-input").val("");
     $("#date-input").val("");
     $("#interest-input").val("");
@@ -50,8 +60,18 @@ $("#search-again").on("click", function (event) {
     $(".youtube-insert").empty();
     $(".breweryDiv").empty();
     $(".content").empty();
+    validation();
 });
 
+function hideForm() {
+    var form = $("#form")
+    form.hide();
+}
+
+function showForm(){
+    var form = $("#form")
+    form.show();
+}
 function divCreator() {
     var contentbox = $("<div class='content-box'>");
     contentbox.append("<div id='newsBox'>");
@@ -64,8 +84,6 @@ function divCreator() {
 }
 // news api 
 function newsAPICall() {
-
-    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
 
 
         var location = $("#location-input").val().trim();
@@ -128,11 +146,6 @@ function newsAPICall() {
             $("#newsBox").append(newsDiv);
         });
 
-    } else {
-
-        $("<p> Invalid selection, Please try again!</p>").modal();
-
-    }
 };
 
 // added the TM
@@ -249,16 +262,14 @@ function openWeatherAPICall() {
 };
 
 
-// Brewery API Call
+// Tie into Open Brewery API and display breweries near userLocation
 function breweryAPICall() {
-    if ($("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")) {
-
+  
         function breweryApi() {
 
             var url = "https://api.openbrewerydb.org/breweries?by_city=" + userLocation;
             var breweryDiv = $("<div>");
             breweryDiv.addClass("breweryDiv")
-
             $.ajax({
                 url,
                 method: "Get"
@@ -266,27 +277,39 @@ function breweryAPICall() {
                 for (i = 0; i < 3; i++) {
                     var name = response[i].name;
                     var street = response[i].street;
+                    var city = response[i].city;
+                    var brew = $("<a>")
+                    
 
-                    breweryDiv.append("<h4>" + name + "</h4>");
-                    breweryDiv.append("<p>" + street + "</p>");
-
+                    brew.append("<h5>" + name + "</h5>");
+                    brew.append("<p>" + street + " " + city + "</p>");
+                    brew.attr ({
+                        "href": response[i].website_url,
+                        "target": "_blank"
+                    });
+                    
+                    breweryDiv.append(brew);
                 }
+                breweryDiv.prepend("<h4 class='brew'> Local Breweries </h4>");
                 breweryDiv.addClass("brewery-div");
                 $("#breweryBox").append(breweryDiv);
             })
         }
         breweryApi();
-    } else {
-
-        $("<p> Invalid selection, Please try again!</p>").modal();
-
-    }
 
 };
+
+
+//fixes validation issue after second search
+function resetValidation(){
+    $("#location-input").removeClass("valid").addClass("invalid");
+    $("#interest-input").removeClass("valid").addClass("invalid");
+}
 
 //form validation check 
 
 function validation() {
+    resetValidation();
 
     $("#location-input").on("input", function () {
         var input = $(this);
@@ -335,7 +358,14 @@ console.log($("#location-input").hasClass("valid"));
 console.log($("#date-input").hasClass("valid"));
 console.log($("#interest-input").hasClass("valid"));
 
-// $("#location-input").hasClass("valid") && $("#date-input").hasClass("valid") && $("#interest-input").hasClass("valid")
-// $('input[name="dates"]').daterangepicker();
 
 validation();
+
+
+//attempt at resize 
+
+if ($( window ).width() <= 640){
+    $("#search-again").attr("value", "New Search");
+} else if ($( window ).width() >= 768){
+    $("#search-again").attr("value", "Search Other Destinations");
+}

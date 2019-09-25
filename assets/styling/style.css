@@ -191,6 +191,10 @@ h6 {
     margin-right: 3%;
 }
 
+.brew {
+    border-bottom: 2px solid white;
+}
+
 #forecastBox {
     background-color: rgba(105, 105, 105, 0.8);
     padding: 10px;
@@ -215,6 +219,7 @@ h6 {
     float: left;
     margin-left: 3%;
 }
+
 
 .video {
     text-align: center;
@@ -275,10 +280,6 @@ hr {
     font-size: 18x;
 }
 
- input.invalid:focus, input.invalid {
-    border: none;
-	border: 1px solid red;
-}
 
 .error-location, .error-dates, .error-interests {
     color: red;
@@ -287,6 +288,7 @@ hr {
     padding: 40px;
     font-size: 20px;
     text-align: center;
+    background-color: #ffffff;
 }
 
 #search-again {
@@ -294,6 +296,7 @@ hr {
     font-size: 20px;
     margin-top: 1%;
     border-radius: 18px;
+    position: relative;
 }
 
 #submit {
@@ -332,4 +335,80 @@ th,
   td:last-child {
     padding-right: 0; }
 
-    
+.modal a.close-modal {
+    background-image: none;
+    background-color: black;
+    border-radius: 15px;
+    background-size: 25px;
+    background-image: url("../images/logo_modal.png");
+}
+
+
+@media (min-width: 640px){
+
+    #form {
+        width: 95%;
+    }
+    .header {
+        text-align: left;
+        height: 140px;
+    }
+    h1 {
+        font-size: 4.0rem;
+    }
+    #search-again {
+        position: relative;
+        float: right;
+        top: -53px;
+        right: -17px;
+        width: 160px;
+        padding: 0;
+        
+    }
+    #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
+        width: 95%;
+        margin-top: 10px;
+    } 
+    #logo-name {
+        margin: none;
+        left: 0;
+    }
+
+}
+
+@media (min-width: 768px) {
+    #form {
+        width: 80%;
+    }
+    #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
+        width: 95%;
+        margin-top: 0px;
+    } 
+    #search-again {
+        position: relative;
+        float: right;
+        width: 295px;
+        padding: 0;
+    }
+}
+@media (min-width: 843px){
+    #search-again {
+        right: -16px;
+        top: 72px;
+    }
+}
+
+@media (min-width: 980px){
+    #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
+        width: 45%;
+        margin-top: 50px;
+    } 
+    #search-again {
+        margin: 5px;
+    }
+}
+
+/* 640px
+768px
+980px
+1200px */
