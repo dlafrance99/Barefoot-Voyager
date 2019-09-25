@@ -1,5 +1,13 @@
+/* font-family: 'Homemade Apple', cursive;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Slabo 27px', serif; */
+
 * {
     box-sizing: border-box;
+}
+
+body {
+    font-family: 'Slabo 27px', serif; 
 }
 
 .clearfix::after {
@@ -8,13 +16,10 @@
     display: block;
 }
 
-
-
 .wrapper {
     min-height: 100vh;
     position: relative;
 }
-
 
 .image1 {
     background-image: url(../images/Mount_Hood_Trillium\ Lake_9.16.17-6_1.jpg); 
@@ -42,8 +47,8 @@
     width: 53%;
     margin: auto;
     margin-top: 50px;
+    font-family: 'Josefin Sans', sans-serif;
 }
-
 
 .header {
     background-color: burlywood;
@@ -53,6 +58,8 @@
     position: relative;
     top: 0;
     left: 0;
+    font-family: 'Homemade Apple', cursive;
+    text-align: center;
 }
 
 #logo {
@@ -66,7 +73,6 @@
 .footer {
     background-color: darkturquoise;
     width: 100vw;
-    bottom: 0;
     left: 0;
     text-align: center;
     color: #ffffff;
@@ -97,17 +103,6 @@
     float: left;
     margin-left: 3%;
 }
-#weatherBox {
-    background-color: rgba(105, 105, 105, 0.8);
-    padding: 10px;
-    margin: auto;
-    margin-top: 50px;
-    color: #ffffff;
-    width: 45%;
-    border-radius: 10px;
-    float: right;
-    margin-right: 3%;
-}
 
 #breweryBox {
     background-color: rgba(105, 105, 105, 0.8);
@@ -129,12 +124,13 @@
     background-color: rgba(105, 105, 105, 0.8);
     padding: 10px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 3%;
     color: #ffffff;
-    width: 45%;
+    /* width: 45%; */
     border-radius: 10px;
     float: left;
-    margin-left: 3%; 
+    margin-left: 4%;
+    text-align: center;
 }
 
 #youTubeBox {
@@ -192,11 +188,14 @@ a {
 }
 
 hr {
-    width: 80%;
+    width: 90%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .content {
     margin: 20px;
+    font-size: 18x;
 }
 
 
@@ -208,6 +207,27 @@ hr {
     font-size: 20px;
     text-align: center;
     background-color: #ffffff;
+}
+
+#search-again {
+    font-family: 'Slabo 27px', serif;
+    font-size: 20px;
+    margin-top: 1%;
+    border-radius: 18px;
+}
+
+#submit {
+    font-family: 'Slabo 27px', serif;
+    font-size: 20px;
+    border-radius: 18px;
+}
+
+iframe {
+    border-radius: 18px;
+    padding: 1rem;
+    background: beige;
+    margin-bottom: 2rem;
+    width: 80%;
 }
 
 /* overrides skeleton styling on calendar */

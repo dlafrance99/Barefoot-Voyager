@@ -70,7 +70,6 @@ function divCreator() {
     contentbox.append("<div id='newsBox'>");
     contentbox.append("<div id='ticketmasterBox'>");
     contentbox.append("<div id='youTubeBox'>");
-    contentbox.append("<div id='weatherBox'>");
     contentbox.append("<div id='forecastBox'>");
     contentbox.append("<div id='breweryBox'>");
     
@@ -179,8 +178,8 @@ function youTubeAPICall() {
             var youTubePageAdd = "https://www.youtube.com/embed/" + youTubeVideoId;
 
             var youTubePlace = $("<iframe>")
-            youTubePlace.attr("width", "auto");
-            youTubePlace.attr("height", "auto");
+            // youTubePlace.attr("width", "460px");
+            // youTubePlace.attr("height", "240px");
             youTubePlace.attr("src", youTubePageAdd);
             youTubePlace.attr("frameborder", "0");
             youTubePlace.attr("allow", "accelerometer; encrypted-media; gyroscope; picture-in-picture");
@@ -188,11 +187,10 @@ function youTubeAPICall() {
             videoDiv.append(youTubePlace);
         };
         newDivideYouTube.append(videoDiv);
+        $("#youTubeBox").append(newDivideYouTube);
         newDivideYouTube.addClass("youtube-div");
         $(".youtube-div").prepend("<h4 id='youtube-header'>YouTube Videos</h4>")
-        $("#youTubeBox").append(newDivideYouTube);
-
-    })
+    });
 };
 
 // Tie into OpenWeather API and display current weather based on userLocation
@@ -213,10 +211,10 @@ function openWeatherAPICall() {
 
         var weatherOverlay = $("<div class='weather-div'>")
 
-        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}</p><hr><p>5 Day Forecast for ${response.name}<p><hr>`;
+        var infoWeatherOverlay = `<p>Today's Weather Information for ${response.name}</p><hr><p>Temperature: ${response.main.temp} F</p><p>High Temperature: ${response.main.temp_max} F</p><p>Low Temperature: ${response.main.temp_min} F</p><p>Wind Speed ${response.wind.speed} mph</p><p>Current Conditions: ${response.weather[0].description}</p><hr><p>5 Day Forecast For ${response.name}</p><hr>`;
 
         weatherOverlay.append(infoWeatherOverlay);
-        $("#weatherBox").append(weatherOverlay);
+        $("#forecastBox").prepend(weatherOverlay);
     });
 
     // This AJAX calls the forecasted weather for the destination city based on userLocation
@@ -238,9 +236,9 @@ function openWeatherAPICall() {
 
             forecastOverlay.append(forecastWeatherOverlay);
             $("#forecastBox").append(forecastOverlay);
-
+            
         }
-
+        
     });
 };
 
@@ -336,13 +334,6 @@ $('input[name="dates"]').daterangepicker({
 }, function(start, end, label) {
   console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
 });
-
-console.log($("#location-input").hasClass("valid"));
-console.log($("#date-input").hasClass("valid"));
-console.log($("#interest-input").hasClass("valid"));
-
-// added the TM
-
 
 console.log($("#location-input").hasClass("valid"));
 console.log($("#date-input").hasClass("valid"));
