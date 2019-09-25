@@ -1,3 +1,10 @@
+// //flash of unstyled content fix
+
+// // $("#fouc").style(display = "block");
+
+// document.getElementById("fouc").style.display="block";
+
+
 // random background images 
 var randomImg = (Math.floor(Math.random()*3)+1);
 $("body").addClass(`image${randomImg}`)
@@ -341,3 +348,13 @@ console.log($("#interest-input").hasClass("valid"));
 
 
 validation();
+
+
+//attempt at resize 
+
+if ($( window ).width() <= 640){
+    $("#search-again").attr("value", "New Search");
+} else if ($( window ).width() === 768){
+    $("#search-again").attr("value", "Search Other Destinations");
+}
+

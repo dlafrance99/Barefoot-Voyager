@@ -253,10 +253,12 @@ th,
 
 
 @media (min-width: 640px){
+
     #form {
         width: 95%;
     }
     .header {
+        text-align: left;
         height: 90px;
     }
     h1 {
@@ -265,7 +267,10 @@ th,
     #search-again {
         position: relative;
         float: right;
-        top: -65px;
+        top: -75px;
+        right: 3px;
+        width: 160px;
+        padding: 0;
     }
     #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
         width: 95%;
@@ -282,6 +287,14 @@ th,
         width: 95%;
         margin-top: 50px;
     } 
+    #search-again {
+        position: relative;
+        float: right;
+        top: -75px;
+        right: 3px;
+        width: 295px;
+        padding: 0;
+    }
 }
 
 @media (min-width: 980px){
@@ -289,6 +302,9 @@ th,
         width: 45%;
         margin-top: 50px;
     } 
+    #search-again {
+        margin: 5px;
+    }
 }
 
 /* 640px

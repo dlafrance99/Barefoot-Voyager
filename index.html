@@ -8,6 +8,8 @@
 
     <title>Bearfoot Voyager</title>
 
+    <!-- <style type="text/css">#fouc {display: none;}</style> -->
+
     <!-- linking to normalize -->
     <link rel="stylesheet" href="assets/styling/Normalize.css">
 
@@ -33,58 +35,59 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div id="fouc">
+        <div class="wrapper">
 
-        <div class="content-wrapper">
+            <div class="content-wrapper">
 
-            <div class="header">
-                <header>
-                    <h1>Bearfoot Voyager <img id="logo" atl="logo" src="assets/images/Logo_brown.png">
-                    </h1>
-                    <input class="button-primary" type="submit" value="Search Other Destinations" id="search-again">
-                </header>
-            </div>
-            <form>
-                <div id="form">
-                    <div class="row">
-                        <div class="twelve columns">
-                            <label for="location">Location</label>
-                            <input class="u-full-width" type="text" placeholder="Your Location" id="location-input">
-                            <span class="error-location"></span>
+                <div class="header">
+                    <header>
+                        <h1>Bearfoot Voyager <img id="logo" atl="logo" src="assets/images/Logo_brown.png">
+                        </h1>
+                        <input class="button-primary" type="submit" value="Search Other Destinations" id="search-again">
+                    </header>
+                </div>
+                <form>
+                    <div id="form">
+                        <div class="row">
+                            <div class="twelve columns">
+                                <label for="location">Location</label>
+                                <input class="u-full-width" type="text" placeholder="Your Location" id="location-input">
+                                <span class="error-location"></span>
+                            </div>
+                            <div class="twelve columns">
+                                <label for="dates">Dates</label>
+                                <input class="u-full-width valid" type="text" name="dates" placeholder="Requested Dates"
+                                    id="date-input">
+                                <span class="error-dates"></span>
+                            </div>
+                            <div class="twelve columns">
+                                <label for="interests">Interests</label>
+                                <input class="u-full-width" type="text" placeholder="What Interests You?"
+                                    id="interest-input">
+                                <span class="error-interests"></span>
+                            </div>
+                            <input class="button-primary" type="submit" value="Submit" id="submit">
                         </div>
-                        <div class="twelve columns">
-                            <label for="dates">Dates</label>
-                            <input class="u-full-width valid" type="text" name="dates" placeholder="Requested Dates"
-                                id="date-input">
-                            <span class="error-dates"></span>
-                        </div>
-                        <div class="twelve columns">
-                            <label for="interests">Interests</label>
-                            <input class="u-full-width" type="text" placeholder="What Interests You?"
-                                id="interest-input">
-                            <span class="error-interests"></span>
-                        </div>
-                        <input class="button-primary" type="submit" value="Submit" id="submit">
                     </div>
+
+                    <div class="content clearfix">
+
+                    </div>
+
+            </div>
+            <div>
+                <div class="eight columns">
+                    <div class="ticket-information"></div>
                 </div>
-
-                <div class="content clearfix">
-
-                </div>
-
-        </div>
-        <div>
-            <div class="eight columns">
-                <div class="ticket-information"></div>
             </div>
         </div>
+        <footer>
+        <div class="footer">
+            <h5>footer</h5>
+        </div>
+        </footer>
     </div>
-    <footer>
-    <div class="footer">
-        <h5>footer</h5>
-    </div>
-    </footer>
-
     <!-- Linking jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
