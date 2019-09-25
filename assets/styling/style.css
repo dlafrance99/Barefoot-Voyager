@@ -74,7 +74,7 @@
     position: absolute;
 }
 
-.newsDiv {
+#newsBox {
     background-color: rgba(105, 105, 105, 0.8);
     padding: 10px;
     margin: auto;
@@ -86,7 +86,7 @@
     margin-right: 3%;
 }
 
-.ticketmaster-div {
+#ticketmasterBox {
     background-color: rgba(105, 105, 105, 0.8);
     padding: 10px;
     margin: auto;
@@ -97,52 +97,58 @@
     float: left;
     margin-left: 3%;
 }
-.weather-div {
+#weatherBox {
     background-color: rgba(105, 105, 105, 0.8);
     padding: 10px;
     margin: auto;
     margin-top: 50px;
     color: #ffffff;
-    width: 50%;
+    width: 45%;
     border-radius: 10px;
     float: right;
     margin-right: 3%;
 }
 
-.forecast-div {
+#breweryBox {
     background-color: rgba(105, 105, 105, 0.8);
     padding: 10px;
     margin: auto;
     margin-top: 50px;
     color: #ffffff;
-    width: 35%;
+    width: 45%;
+    border-radius: 10px;
+    float: right;
+    margin-right: 3%;
+}
+
+.brew {
+    border-bottom: 2px solid white;
+}
+
+#forecastBox {
+    background-color: rgba(105, 105, 105, 0.8);
+    padding: 10px;
+    margin: auto;
+    margin-top: 50px;
+    color: #ffffff;
+    width: 45%;
     border-radius: 10px;
     float: left;
     margin-left: 3%; 
 }
 
-.youtube-div {
+#youTubeBox {
     background-color: rgba(105, 105, 105, 0.8);
     padding: 10px;
     margin: auto;
     margin-top: 50px;
     color: #ffffff;
-    width: 35%;
+    width: 45%;
     border-radius: 10px;
     float: left;
     margin-left: 3%;
 }
-.breweryDiv {
-    background-color: rgba(105, 105, 105, 0.8);
-    padding: 10px;
-    margin: auto;
-    margin-top: 50px;
-    color: #ffffff;
-    width: 35%;
-    border-radius: 10px;
-    float: left;
-    margin-left: 3%;
-}
+
 
 .video {
     text-align: center;
@@ -224,3 +230,48 @@ th,
     background-size: 25px;
     background-image: url("../images/logo_modal.png");
 }
+
+
+@media (min-width: 640px){
+    #form {
+        width: 95%;
+    }
+    .header {
+        height: 90px;
+    }
+    h1 {
+        font-size: 4.0rem;
+    }
+    #search-again {
+        position: relative;
+        float: right;
+        top: -65px;
+    }
+    #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
+        width: 95%;
+        margin-top: 10px;
+    } 
+
+}
+
+@media (min-width: 768px) {
+    #form {
+        width: 80%;
+    }
+    #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
+        width: 95%;
+        margin-top: 50px;
+    } 
+}
+
+@media (min-width: 980px){
+    #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
+        width: 45%;
+        margin-top: 50px;
+    } 
+}
+
+/* 640px
+768px
+980px
+1200px */
