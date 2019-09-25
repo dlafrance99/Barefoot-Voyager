@@ -143,7 +143,7 @@
   
   /* Larger than phablet */
   @media (min-width: 550px) {
-    h1 { font-size: 5.0rem; }
+    h1 { font-size: 6.0rem; }
     h2 { font-size: 4.2rem; }
     h3 { font-size: 3.6rem; }
     h4 { font-size: 3.0rem; }
