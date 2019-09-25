@@ -290,6 +290,7 @@ hr {
     font-size: 20px;
     margin-top: 1%;
     border-radius: 18px;
+    position: relative;
 }
 
 #submit {
@@ -335,7 +336,7 @@ th,
     }
     .header {
         text-align: left;
-        height: 90px;
+        height: 140px;
     }
     h1 {
         font-size: 4.0rem;
@@ -343,15 +344,20 @@ th,
     #search-again {
         position: relative;
         float: right;
-        top: -75px;
-        right: 3px;
+        top: -53px;
+        right: -17px;
         width: 160px;
         padding: 0;
+        
     }
     #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
         width: 95%;
         margin-top: 10px;
     } 
+    #logo-name {
+        margin: none;
+        left: 0;
+    }
 
 }
 
@@ -361,15 +367,19 @@ th,
     }
     #newsBox, #ticketmasterBox, #weatherBox, #breweryBox, #forecastBox, #youTubeBox {
         width: 95%;
-        margin-top: 50px;
+        margin-top: 0px;
     } 
     #search-again {
         position: relative;
         float: right;
-        top: -75px;
-        right: 3px;
         width: 295px;
         padding: 0;
+    }
+}
+@media (min-width: 843px){
+    #search-again {
+        right: -16px;
+        top: 72px;
     }
 }
 

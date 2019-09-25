@@ -366,7 +366,6 @@ validation();
 
 if ($( window ).width() <= 640){
     $("#search-again").attr("value", "New Search");
-} else if ($( window ).width() === 768){
+} else if ($( window ).width() >= 768){
     $("#search-again").attr("value", "Search Other Destinations");
 }
-
