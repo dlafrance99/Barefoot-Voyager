@@ -122,6 +122,10 @@ h6 {
     left: 5%;
 }
 
+h4 {
+    text-align: center;
+}
+
 #search-again {
     margin: 20px;
     float: right;
@@ -147,6 +151,7 @@ h6 {
     color: #ffffff;
     height: 75px;
     position: absolute;
+    bottom: 0;
 }
 
 #newsBox {
@@ -195,7 +200,7 @@ h6 {
     margin: auto;
     margin-top: 3%;
     color: #ffffff;
-    /* width: 45%; */
+    width: 45%;
     border-radius: 10px;
     float: left;
     margin-left: 4%;
