@@ -34,7 +34,7 @@ $("#submit").on("click", function (event) {
         divCreator();
         newsAPICall();
         ticketMasterAPICall();
-        // youTubeAPICall();
+        youTubeAPICall();
         openWeatherAPICall();
         breweryAPICall();
         hideForm();
